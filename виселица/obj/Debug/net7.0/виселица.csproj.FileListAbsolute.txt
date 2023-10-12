@@ -1,0 +1,14 @@
+C:\Users\ASUS\Desktop\шарп\виселица\виселица\obj\Debug\net7.0\виселица.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ASUS\Desktop\шарп\виселица\виселица\obj\Debug\net7.0\виселица.AssemblyInfoInputs.cache
+C:\Users\ASUS\Desktop\шарп\виселица\виселица\obj\Debug\net7.0\виселица.AssemblyInfo.cs
+C:\Users\ASUS\Desktop\шарп\виселица\виселица\obj\Debug\net7.0\виселица.csproj.CoreCompileInputs.cache
+C:\Users\ASUS\Desktop\шарп\виселица\виселица\bin\Debug\net7.0\виселица.exe
+C:\Users\ASUS\Desktop\шарп\виселица\виселица\bin\Debug\net7.0\виселица.deps.json
+C:\Users\ASUS\Desktop\шарп\виселица\виселица\bin\Debug\net7.0\виселица.runtimeconfig.json
+C:\Users\ASUS\Desktop\шарп\виселица\виселица\bin\Debug\net7.0\виселица.dll
+C:\Users\ASUS\Desktop\шарп\виселица\виселица\bin\Debug\net7.0\виселица.pdb
+C:\Users\ASUS\Desktop\шарп\виселица\виселица\obj\Debug\net7.0\виселица.dll
+C:\Users\ASUS\Desktop\шарп\виселица\виселица\obj\Debug\net7.0\refint\виселица.dll
+C:\Users\ASUS\Desktop\шарп\виселица\виселица\obj\Debug\net7.0\виселица.pdb
+C:\Users\ASUS\Desktop\шарп\виселица\виселица\obj\Debug\net7.0\виселица.genruntimeconfig.cache
+C:\Users\ASUS\Desktop\шарп\виселица\виселица\obj\Debug\net7.0\ref\виселица.dll
