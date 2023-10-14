@@ -9,7 +9,7 @@ namespace виселица
 {
     public class Hangman
     {       
-        public static int Output(int mistakes) 
+        public static int Output(int lives) 
         {
             char[,] hangman =
                     {
@@ -21,16 +21,16 @@ namespace виселица
                     { ' ' , ' ' , ' ' , ' ' , '=' , '=' , '=' , '=' , '=' }
                     };
 
-            switch (mistakes)
+            switch (lives)
             {
-                case 0:                    
+                case 6:                    
                     break;
                     
-                case 1:
+                case 5:
                     hangman[2, 1] = 'O';                    
                     break;
 
-                case 2:
+                case 4:
                     hangman[2, 1] = 'O';
                     hangman[3, 1] = '|';
                     break;
@@ -41,20 +41,22 @@ namespace виселица
                     hangman[3, 0] = '/';
                     break;
                 
-                case 4:
+                case 2:
                     hangman[2, 1] = 'O';
                     hangman[3, 1] = '|';
                     hangman[3, 0] = '/';
                     hangman[3, 2] = '\\';
                     break;
-                case 5:
+
+                case 1:
                     hangman[2, 1] = 'O';
                     hangman[3, 1] = '|';
                     hangman[3, 0] = '/';
                     hangman[3, 2] = '\\';
                     hangman[4, 0] = '/';
                     break;
-                case 6:
+
+                case 0:
                     hangman[2, 1] = 'O';
                     hangman[3, 1] = '|';
                     hangman[3, 0] = '/';

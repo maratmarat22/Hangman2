@@ -1,21 +1,36 @@
-﻿namespace виселица
+﻿using System.Data.SQLite;
+using System.Diagnostics.Tracing;
+
+namespace виселица
 {
     internal class Program
     {
-        static void Graphics(int mistakes, char[] hiddenword)
+
+        static string Maindsdf()
         {
-            Console.WriteLine("Ошибок: {0}", mistakes);
-            Console.WriteLine("Вы ввели: -\n");
-            Hangman.Output(mistakes);
-            Console.WriteLine("\n{0}", string.Join(" ", hiddenword));
+            string connectionString = "Data Source=C:\\Users\\ASUS\\Source\\Repos\\тест\\тест\\bin\\test.db; Version=3;";
+
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+                string sql = "SELECT slovo FROM words";
+                SQLiteCommand command = new SQLiteCommand(sql, connection);
+                SQLiteDataReader reader = command.ExecuteReader();
+                var words = new List<string>();
+                while (reader.Read())
+                {
+                    string word = reader.GetString(0);
+                    words.Add(word);
+                }
+                reader.Close();
+
+                Random rnd = new Random();
+                int index = rnd.Next(words.Count);
+                return words[index];
+            }
         }
-        static void Graphics(int mistakes, char letter, char[] hiddenword)
-        {
-            Console.WriteLine("Ошибок: {0}", mistakes);
-            Console.WriteLine("Вы ввели: {0}\n", letter);
-            Hangman.Output(mistakes);
-            Console.WriteLine("\n{0}", string.Join(" ", hiddenword));
-        }
+
+
 
         static void Main(string[] args)
         {
@@ -40,19 +55,19 @@
             //один уровень
             if (gamestart)
             {
-                string word = "виселица";
+                string word_random = Maindsdf();
+                string word = word_random;
                 char[] hiddenword = new char[word.Length];
-                int mistakes = 0;
-                int MaxMistakes = 6;
+                int lives = 6;
 
                 for (int i = 0; i < word.Length; i++)
                 {
                     hiddenword[i] = '_';
                 }
 
-                Program.Graphics(mistakes, hiddenword);
+                Program.Graphics(lives, hiddenword);
 
-                while (mistakes < MaxMistakes && new string(hiddenword) != word)
+                while (lives > 0 && new string(hiddenword) != word)
                 {
                     char letter = Console.ReadKey().KeyChar;
 
@@ -78,13 +93,13 @@
                     }
                     if (!letterFound)
                     {
-                        mistakes++;
+                        lives--;
                     }
 
-                    Program.Graphics(mistakes, letter, hiddenword);
+                    Program.Graphics(lives, letter, hiddenword);
                 }
 
-                if (mistakes == MaxMistakes)
+                if (lives == 0)
                 {
                     Console.WriteLine("Вы проиграли");
                 }
@@ -100,6 +115,24 @@
             {
                 Console.WriteLine("1 - петя\n2 - вася\n3 - коля");
             }
+
+
+            
+        }
+
+        static void Graphics(int mistakes, char[] hiddenword)
+        {
+            Console.WriteLine("Ошибок: {0}", mistakes);
+            Console.WriteLine("Вы ввели: -\n");
+            Hangman.Output(mistakes);
+            Console.WriteLine("\n{0}", string.Join(" ", hiddenword));
+        }
+        static void Graphics(int mistakes, char letter, char[] hiddenword)
+        {
+            Console.WriteLine("Ошибок: {0}", mistakes);
+            Console.WriteLine("Вы ввели: {0}\n", letter);
+            Hangman.Output(mistakes);
+            Console.WriteLine("\n{0}", string.Join(" ", hiddenword));
         }
     }
 }
