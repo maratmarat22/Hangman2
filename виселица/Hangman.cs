@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace виселица
 {
-    public class Hangman
+    public class Graphics
     {       
-        public static int Output(int lives) 
+        public static int Hangman(int lives) 
         {
             char[,] hangman =
                     {
@@ -75,6 +75,16 @@ namespace виселица
                 }
                 Console.WriteLine();
             }
+            return 0;
+        }
+
+        public static int Hearts(int lives)
+        {
+            for (int i = lives; i > 0; i--)
+            {
+                Console.Write('\u2665' + " ");
+            }
+            Console.WriteLine();
             return 0;
         }
     }

@@ -35,9 +35,8 @@ namespace виселица
         static void Main(string[] args)
         {
             //меню
-            Hangman hangman = new Hangman();
 
-            Console.WriteLine("1 - начать игру\n2 - список лидеров");
+            Console.WriteLine("ВИСЕЛИЦА\n\n1 - начать игру\n2 - список лидеров\n3 - выход");
 
             int menuchoice = int.Parse(Console.ReadLine());
             bool gamestart = false, leaderboard = false;
@@ -65,7 +64,7 @@ namespace виселица
                     hiddenword[i] = '_';
                 }
 
-                Program.Graphics(lives, hiddenword);
+                Program.Output(lives, hiddenword);
 
                 while (lives > 0 && new string(hiddenword) != word)
                 {
@@ -96,7 +95,7 @@ namespace виселица
                         lives--;
                     }
 
-                    Program.Graphics(lives, letter, hiddenword);
+                    Program.Output(lives, letter, hiddenword);
                 }
 
                 if (lives == 0)
@@ -120,18 +119,18 @@ namespace виселица
             
         }
 
-        static void Graphics(int mistakes, char[] hiddenword)
+        static void Output(int lives, char[] hiddenword)
         {
-            Console.WriteLine("Ошибок: {0}", mistakes);
+            Graphics.Hearts(lives);
             Console.WriteLine("Вы ввели: -\n");
-            Hangman.Output(mistakes);
+            Graphics.Hangman(lives);
             Console.WriteLine("\n{0}", string.Join(" ", hiddenword));
         }
-        static void Graphics(int mistakes, char letter, char[] hiddenword)
+        static void Output(int lives, char letter, char[] hiddenword)
         {
-            Console.WriteLine("Ошибок: {0}", mistakes);
+            Graphics.Hearts(lives);
             Console.WriteLine("Вы ввели: {0}\n", letter);
-            Hangman.Output(mistakes);
+            Graphics.Hangman(lives);
             Console.WriteLine("\n{0}", string.Join(" ", hiddenword));
         }
     }
