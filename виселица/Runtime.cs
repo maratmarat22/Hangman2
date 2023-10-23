@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,75 +9,90 @@ namespace виселица
 {
     public class Runtime
     {
-        public static int DifficultyChoice()
+        /*public static void ContinueGame()
         {
-            Console.Clear();
-            Console.WriteLine("Выберите уровень сложности\n1 - нормальный\n2 - сложный");
-            int i = int.Parse(Console.ReadLine());
-            switch (i)
+            string connectionString = "Data Source=.\\test.db; Version=3;";
+
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
-                case 1:
-                    break;
+                connection.Open();
+                string sql = "SELECT * FROM saves";
+                SQLiteCommand command = new SQLiteCommand(sql, connection);
+                SQLiteDataReader reader = command.ExecuteReader();
+                Console.WriteLine("Сохраненные игры:");
+                while (reader.Read())
+                {
+                    string playerName = reader.GetString(0);
+                    string word = reader.GetString(1);
+                    string hiddenWord = reader.GetString(2);
+                    int lives = reader.GetInt32(3);
 
-                case 2:
-                    break;
+                    Console.WriteLine("Имя игрока: {0}, Слово: {1}, Угаданное слово: {2}, Жизни: {3}", playerName, word, hiddenWord, lives);
+                }
+                reader.Close();
 
-                default:
+                Console.Write("Введите имя игрока, чью игру вы хотите продолжить: ");
+                string playerNameInput = Console.ReadLine();
+
+                sql = "SELECT * FROM saves WHERE name = @playerName";
+                command = new SQLiteCommand(sql, connection);
+                command.Parameters.AddWithValue("@playerName", playerNameInput);
+                reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    string playerName = reader.GetString(0);
+                    string word = reader.GetString(1);
+                    string hiddenWord = reader.GetString(2);
+                    int lives = reader.GetInt32(3);
+
                     Console.Clear();
-                    Console.WriteLine("\nНеверный выбор. Пожалуйста, попробуйте снова.");
-                    DifficultyChoice();
-                    break;
+                    Console.WriteLine("Продолжаем сохраненную игру:");
+                    Console.WriteLine("Имя игрока: {0}", playerName);
+                    Console.WriteLine("Загаданное слово: {0}", word);
+                    char[] hiddenWordArray = hiddenWord.ToCharArray();
+                    Console.WriteLine("Угаданное слово: {0}", string.Join(" ", hiddenWordArray));
+                    Console.WriteLine("Жизни: {0}", lives);
+                    Console.ReadLine();
+
+                }
+                else
+                {
+                    Console.WriteLine("Сохраненная игра для игрока {0} не найдена.", playerNameInput);
+                }
+                reader.Close();
             }
-            return i;
         }
+
+
+
+        private static bool isGameSaved = false;
+
+        private static void SaveGame(string playerName, string word, char[] hiddenword, int lives)
+        {
+            string hiddenWordString = new string(hiddenword);
+            DataBase.SaveGame(playerName, word, hiddenWordString, lives);
+        }*/
+
         
-        public static int MainMenu(out bool gamestart, out bool leaderboard)
+
+        
+
+        public static bool _gameOver = false;
+        
+        public static void Level()
         {
-            Console.Clear();
-            Console.WriteLine("ВИСЕЛИЦА\n\n1 - начать игру\n2 - список лидеров\n3 - выход");
-
-            int menuchoice = int.Parse(Console.ReadLine());
-
-            gamestart = false;
-            leaderboard = false;
-            int difficulty = 0;
-            switch (menuchoice)
-            {
-                case 1:
-                    gamestart = true;
-                    difficulty = DifficultyChoice();
-                    break;
-                
-                case 2:
-                    leaderboard = true;
-                    break;
-                
-                case 3:
-                    Environment.Exit(0);
-                    break;
-                
-                default:
-                    Console.Clear();
-                    Console.WriteLine("Неверный выбор. Пожалуйста, попробуйте снова.");
-                    MainMenu(out gamestart, out leaderboard);
-                    break;
-            }
-            return difficulty;
-        }
-
-        public static bool gameOver = false;
-
-        public static void Gameplay()
-        {
-            bool gamestart = false, leaderboard = false;
+            bool gamestart = true; 
+            bool leaderboard = false;
             int wins = 0;
+
             while (true)
             {
-                if (gameOver)
+                /*if (gameOver)
                 {
-                    Console.Write("Введите 'да', чтобы начать новую игру, или любое другое слово для выхода: ");
-                    string? restartChoice = Console.ReadLine();
-                    if (restartChoice.ToLower() != "да")
+                    Console.Write("Введите 'да', чтобы начать новую игру, 'продолжить', чтобы загрузить сохраненную игру, или любое другое слово для выхода: ");
+                    string restartChoice = Console.ReadLine();
+                    
+                    if (restartChoice.ToLower() != "да" && restartChoice.ToLower() != "продолжить")
                     {
                         break;
                     }
@@ -84,35 +100,58 @@ namespace виселица
                     gameOver = false;
                     gamestart = true;
                     continue;
-                }
+                }*/
 
-                int difficulty = MainMenu(out gamestart, out leaderboard);
                 Console.Clear();
+                int difficulty = Menu.SetDifficulty();
 
                 //Непрерывная игра
                 while (true)
                 {
                     if (gamestart)
                     {
-                        string word_random = DBCooperation.GetRandomWordFromDatabase(difficulty);
-                        string word = word_random;
-                        char[] hiddenword = new char[word.Length];
-                        int lives = 6;
+                        string word;
+                        char[] hiddenword;
+                        int lives;
 
-                        for (int i = 0; i < word.Length; i++)
+                        /*if (!isGameSaved)
+                        {*/
+                            word = DataBase.GetRandomWord(difficulty);
+                            hiddenword = new char[word.Length];
+                            lives = 6;
+
+                            for (int i = 0; i < word.Length; i++)
+                            {
+                                hiddenword[i] = '_';
+                            }
+                        /*}
+                        else
                         {
-                            hiddenword[i] = '_';
-                        }
+                            ContinueGame();
+                            gamestart = false;
+                            Console.Clear();
+                            continue;
+                        }*/
 
                         Output.Response(lives, hiddenword);
 
-                        while (lives > /*minlives*/ 0 && new string(hiddenword) != word)
-                        {
+                        while (lives > 0 && new string(hiddenword) != word)
+                        {                            
                             char letter = Console.ReadKey().KeyChar;
 
                             Console.Clear();
 
                             bool letterFound = false;
+
+                            if (letter == '0'/* && !isGameSaved*/)
+                            {
+                                Console.Write("Введите ваше имя для сохранения: ");
+                                string playerName = Console.ReadLine();
+                                //SaveGame(playerName, word, hiddenword, lives);
+                                //isGameSaved = true;
+                                Console.Clear();
+                                Console.WriteLine("Игра сохранена!");
+                            }
 
                             for (int i = 0; i < word.Length; i++)
                             {
@@ -138,40 +177,38 @@ namespace виселица
                             Output.Response(lives, letter, hiddenword);
                         }
 
-                        if (lives == /*minlives*/ 0)
+                        if (lives == 0)
                         {
                             Console.WriteLine("Вы проиграли");
-                            gameOver = true;
+                            _gameOver = true;
                             Console.Write("Введите ваше имя: ");
-                            string? playerName = Console.ReadLine();
-                            DBCooperation.AddPlayerToLeaderboard(playerName, wins);
-                            gamestart = false;
-
-                            MainMenu(out gamestart, out leaderboard);
+                            string playerName = Console.ReadLine();
+                            DataBase.AddPlayerToLeaderboard(playerName, wins);
+                            Menu.MainMenu();
                         }
                         
                         else
                         {
                             Console.WriteLine("Вы выиграли");
                             wins++;
-                            Console.Write("Введите 'да', чтобы начать новую игру, или 'выход', чтобы выйти: ");
-                            string? restartChoice = Console.ReadLine();
+                            Console.Write("Нажмите любую клавишу, чтобы начать новую игру, или 'выход', чтобы выйти: ");
+                            string restartChoice = Console.ReadLine();
                             if (restartChoice.ToLower() != "да")
                             {
                                 Console.Write("Введите ваше имя для списка лидеров: ");
-                                string? playerName = Console.ReadLine();
-                                DBCooperation.AddPlayerToLeaderboard(playerName, wins);
-                                MainMenu(out gamestart, out leaderboard);
-
+                                string playerName = Console.ReadLine();
+                                DataBase.AddPlayerToLeaderboard(playerName, wins);
+                                Menu.MainMenu();
                             }
                         }
                         Console.Clear();
+                        //isGameSaved = false;
                     }
 
                     if (leaderboard)
                     {
                         Console.WriteLine("1 - вернуться в главное меню");
-                        Program.DisplayLeaderboard();
+                        DataBase.DisplayLeaderboard();
                         bool validOption = false;
                         while (!validOption)
                         {
@@ -181,7 +218,7 @@ namespace виселица
                                 validOption = true;
                                 Console.Clear();
                                 leaderboard = false;
-                                MainMenu(out gamestart, out leaderboard);
+                                Menu.MainMenu();
                             }
                         }
                     }
@@ -190,3 +227,4 @@ namespace виселица
         }
     }
 }
+            
