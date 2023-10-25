@@ -15,7 +15,90 @@ namespace виселица
             DataBase.SaveGame(playerName, word, hiddenwordString, lives);
         }
 
-        
+
+        public static void ContinueSavedGame(string playerName)
+        {
+            int wins = 0;
+            string savedWord = DataBase.GetSavedWord(playerName);
+            string savedHiddenWord = DataBase.GetSavedHiddenWord(playerName);
+            int savedLives = DataBase.GetSavedLives(playerName);
+
+            Console.Clear();
+
+            char[] hiddenword = savedHiddenWord.ToCharArray();
+            string word = savedWord;
+            int lives = savedLives;
+
+            Output.Response(lives, hiddenword);
+
+            while (lives > 0 && new string(hiddenword) != word)
+            {
+                char letter = Console.ReadKey().KeyChar;
+
+                Console.Clear();
+
+                bool letterFound = false;
+
+                if (letter == '0')
+                {
+                    Console.Write("Введите ваше имя для сохранения: ");
+                    playerName = Console.ReadLine();
+                    SaveGame(playerName, word, hiddenword, lives);
+                    Console.Clear();
+                    Console.WriteLine("Игра сохранена!");
+                    Menu.MainMenu();
+                }
+
+                for (int i = 0; i < word.Length; i++)
+                {
+                    if (letter == hiddenword[i])
+                    {
+                        Console.WriteLine("Вы уже вводили {0}\n", letter);
+                        letterFound = true;
+                        break;
+                    }
+
+                    if (letter == word[i])
+                    {
+                        hiddenword[i] = letter;
+                        letterFound = true;
+                    }
+                }
+
+                if (!letterFound)
+                {
+                    lives--;
+                }
+
+                Output.Response(lives, letter, hiddenword);
+            }
+
+            if (lives == 0)
+            {
+                Console.WriteLine("Вы проиграли");
+                Console.Write("Введите ваше имя: ");
+                playerName = Console.ReadLine();
+                DataBase.AddPlayerToLeaderboard(playerName, wins);
+                Menu.MainMenu();
+            }
+            else
+            {
+                Console.WriteLine("Вы выиграли");
+                Console.Write("Нажмите любую клавишу, чтобы начать новую игру, или 'выход', чтобы выйти: ");
+                string restartChoice = Console.ReadLine();
+                if (restartChoice.ToLower() != "да")
+                {
+                    Console.Write("Введите ваше имя для списка лидеров: ");
+                    playerName = Console.ReadLine();
+                    DataBase.AddPlayerToLeaderboard(playerName, wins);
+                    Menu.MainMenu();
+                }
+            }
+
+            Console.Clear();
+        }
+
+
 
         private static bool _isGameLoaded = false;
 
@@ -131,100 +214,5 @@ namespace виселица
                 }
             }
         }
-        public static void Level(string playerNameInput)
-        {
-            int wins = 0;
-
-            while (true)
-            {
-                Console.Clear();
-                int difficulty = Menu.SetDifficulty();
-
-                //Непрерывная игра
-                while (true)
-                {
-                    string word = //LoadWord();
-                    char[] hiddenword = //LoadHiddenWord();
-                    int lives = //LoadLives();
-
-                    //LoadName();
-
-                    Console.Clear();
-
-                    Output.Response(lives, hiddenword);
-
-                    while (lives > 0 && new string(hiddenword) != word)
-                    {
-                        char letter = Console.ReadKey().KeyChar;
-
-                        Console.Clear();
-
-                        bool letterFound = false;
-
-                        if (letter == '0')
-                        {
-                            Console.Write("Введите ваше имя для сохранения: ");
-                            string playerName = Console.ReadLine();
-                            SaveGame(playerName, word, hiddenword, lives);
-                            //_isGameSaved = true;
-                            Console.Clear();
-                            Console.WriteLine("Игра сохранена!");
-                            Menu.MainMenu();
-                        }
-
-                        for (int i = 0; i < word.Length; i++)
-                        {
-                            if (letter == hiddenword[i])
-                            {
-                                Console.WriteLine("Вы уже вводили {0}\n", letter);
-                                letterFound = true;
-                                break;
-                            }
-
-                            if (letter == word[i])
-                            {
-                                hiddenword[i] = letter;
-                                letterFound = true;
-                            }
-                        }
-
-                        if (!letterFound)
-                        {
-                            lives--;
-                        }
-
-                        Output.Response(lives, letter, hiddenword);
-                    }
-
-                    if (lives == 0)
-                    {
-                        Console.WriteLine("Вы проиграли");
-                        //gameOver = true;
-                        Console.Write("Введите ваше имя: ");
-                        string playerName = Console.ReadLine();
-                        DataBase.AddPlayerToLeaderboard(playerName, wins);
-                        Menu.MainMenu();
-                    }
-
-                    else
-                    {
-                        Console.WriteLine("Вы выиграли");
-                        wins++;
-                        Console.Write("Нажмите любую клавишу, чтобы начать новую игру, или 'выход', чтобы выйти: ");
-                        string restartChoice = Console.ReadLine();
-                        if (restartChoice.ToLower() != "да")
-                        {
-                            Console.Write("Введите ваше имя для списка лидеров: ");
-                            string playerName = Console.ReadLine();
-                            DataBase.AddPlayerToLeaderboard(playerName, wins);
-                            Menu.MainMenu();
-                        }
-                    }
-                    Console.Clear();
-                    //isGameSaved = false;
-
-                }
             }
-        }
-    }
 }

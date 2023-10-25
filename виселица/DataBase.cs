@@ -8,7 +8,85 @@ using System.Threading.Tasks;
 namespace виселица
 {
     public class DataBase
+
     {
+
+        public static string GetSavedWord(string playerName)
+        {
+            string savedWord = string.Empty;
+
+            using (SQLiteConnection connection = new SQLiteConnection("Data Source=.\\test.db;Version=3;"))
+            {
+                connection.Open();
+
+                using (SQLiteCommand command = new SQLiteCommand("SELECT word FROM saves WHERE name = @name", connection))
+                {
+                    command.Parameters.AddWithValue("@name", playerName);
+
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            savedWord = reader.GetString(0);
+                        }
+                    }
+                }
+            }
+
+            return savedWord;
+        }
+
+        public static string GetSavedHiddenWord(string playerName)
+        {
+            string savedHiddenWord = string.Empty;
+
+            using (SQLiteConnection connection = new SQLiteConnection("Data Source=.\\test.db;Version=3;"))
+            {
+                connection.Open();
+
+                using (SQLiteCommand command = new SQLiteCommand("SELECT hidden_word FROM saves WHERE name = @name", connection))
+                {
+                    command.Parameters.AddWithValue("@name", playerName);
+
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            savedHiddenWord = reader.GetString(0);
+                        }
+                    }
+                }
+            }
+
+            return savedHiddenWord;
+        }
+
+        public static int GetSavedLives(string playerName)
+        {
+            int savedLives = 0;
+
+            using (SQLiteConnection connection = new SQLiteConnection("Data Source=.\\test.db;Version=3;"))
+            {
+                connection.Open();
+
+                using (SQLiteCommand command = new SQLiteCommand("SELECT lives FROM saves WHERE name = @name", connection))
+                {
+                    command.Parameters.AddWithValue("@name", playerName);
+
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            savedLives = reader.GetInt32(0);
+                        }
+                    }
+                }
+            }
+
+            return savedLives;
+        }
+
+
         public static string GetRandomWord(int difficulty)
         {
             string connectionString = "Data Source=.\\test.db; Version=3;";

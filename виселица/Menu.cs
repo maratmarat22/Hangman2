@@ -34,7 +34,7 @@ namespace виселица
                     string playerNameInput = DataBase.LoadGame();
                     if (playerNameInput != "0")
                     {
-                        Gameplay.Level(playerNameInput);
+                        Gameplay.ContinueSavedGame(playerNameInput);
                     }
 
                     break;
