@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Data.SQLite;
 using System.Linq;
 using System.Text;
@@ -9,10 +10,10 @@ namespace виселица
 {
     internal class Gameplay
     {
-        private static void SaveGame(string playerName, string word, char[] hiddenword, int lives)
+        private static void SaveGame(string playerName, string word, char[] hiddenword, int lives, string difficulty)
         {
             string hiddenwordString = new string(hiddenword);
-            DataBase.SaveGame(playerName, word, hiddenwordString, lives);
+            DataBase.SaveGame(playerName, word, hiddenwordString, lives, difficulty);
         }
 
 
@@ -22,12 +23,14 @@ namespace виселица
             string savedWord = DataBase.GetSavedWord(playerName);
             string savedHiddenWord = DataBase.GetSavedHiddenWord(playerName);
             int savedLives = DataBase.GetSavedLives(playerName);
+            int savedDifficulty = DataBase.GetSavedDifficulty(playerName);
 
             Console.Clear();
 
             char[] hiddenword = savedHiddenWord.ToCharArray();
             string word = savedWord;
             int lives = savedLives;
+            int difficulty = savedDifficulty;
 
             Output.Response(lives, hiddenword);
 
@@ -43,7 +46,7 @@ namespace виселица
                 {
                     Console.Write("Введите ваше имя для сохранения: ");
                     playerName = Console.ReadLine();
-                    SaveGame(playerName, word, hiddenword, lives);
+                    SaveGame(playerName, word, hiddenword, lives, difficulty);
                     Console.Clear();
                     Console.WriteLine("Игра сохранена!");
                     Menu.MainMenu();
@@ -153,7 +156,7 @@ namespace виселица
                         {
                             Console.Write("Введите ваше имя для сохранения: ");
                             string playerName = Console.ReadLine();
-                            SaveGame(playerName, word, hiddenword, lives);
+                            SaveGame(playerName, word, hiddenword, lives, difficulty);
                             //_isGameSaved = true;
                             Console.Clear();
                             Console.WriteLine("Игра сохранена!");
