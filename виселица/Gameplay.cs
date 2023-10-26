@@ -108,7 +108,98 @@ namespace виселица
                 }
                 else
                 {
-                    Level();
+
+                    while (true)
+                    {
+                        Console.Clear();
+                        //Непрерывная игра
+                        while (true)
+                        {
+
+                            /*if (!_isGameLoaded)
+                            {*/
+                            word = DataBase.GetRandomWord(savedDifficulty);
+                            hiddenword = new char[word.Length];
+
+                            for (int i = 0; i < word.Length; i++)
+                            {
+                                hiddenword[i] = '_';
+                            }
+
+                            Output.Response(lives, hiddenword);
+
+                            while (lives > 0 && new string(hiddenword) != word)
+                            {
+                                char letter = Console.ReadKey().KeyChar;
+
+                                Console.Clear();
+
+                                bool letterFound = false;
+
+                                if (letter == '0')
+                                {
+                                    Console.Write("Введите ваше имя для сохранения: ");
+                                    playerName = Console.ReadLine();
+                                    SaveGame(playerName, word, hiddenword, lives, difficulty);
+                                    //_isGameSaved = true;
+                                    Console.Clear();
+                                    Console.WriteLine("Игра сохранена!");
+                                    Menu.MainMenu();
+                                }
+
+                                for (int i = 0; i < word.Length; i++)
+                                {
+                                    if (letter == hiddenword[i])
+                                    {
+                                        Console.WriteLine("Вы уже вводили {0}\n", letter);
+                                        letterFound = true;
+                                        break;
+                                    }
+
+                                    if (letter == word[i])
+                                    {
+                                        hiddenword[i] = letter;
+                                        letterFound = true;
+                                    }
+                                }
+
+                                if (!letterFound)
+                                {
+                                    lives--;
+                                }
+
+                                Output.Response(lives, letter, hiddenword);
+                            }
+
+                            if (lives == 0)
+                            {
+                                Console.WriteLine("Вы проиграли");
+                                //gameOver = true;
+                                Console.Write("Введите ваше имя: ");
+                                playerName = Console.ReadLine();
+                                DataBase.AddPlayerToLeaderboard(playerName, wins);
+                                Menu.MainMenu();
+                            }
+
+                            else
+                            {
+                                Console.WriteLine("Вы выиграли");
+                                wins++;
+                                Console.Write("Нажмите любую клавишу, чтобы начать новую игру, или 'выход', чтобы выйти: ");
+                                restartChoice = Console.ReadLine();
+                                if (restartChoice.ToLower() != "да")
+                                {
+                                    Console.Write("Введите ваше имя для списка лидеров: ");
+                                    playerName = Console.ReadLine();
+                                    DataBase.AddPlayerToLeaderboard(playerName, wins);
+                                    Menu.MainMenu();
+                                }
+                            }
+                            Console.Clear();
+                            //isGameSaved = false;
+
+                        }
+                    }
                 }
             }
 
