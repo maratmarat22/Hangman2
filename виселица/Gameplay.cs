@@ -25,12 +25,22 @@ namespace виселица
             int savedLives = DataBase.GetSavedLives(playerName);
             int savedDifficulty = DataBase.GetSavedDifficulty(playerName);
 
+
             Console.Clear();
 
             char[] hiddenword = savedHiddenWord.ToCharArray();
             string word = savedWord;
             int lives = savedLives;
-            int difficulty = savedDifficulty;
+            string difficulty = "";
+            if (savedDifficulty == 1)
+            {
+                difficulty = "легкий";
+            }
+            else if (savedDifficulty == 2)
+            {
+                difficulty = "сложный";
+            }
+
 
             Output.Response(lives, hiddenword);
 
@@ -96,6 +106,10 @@ namespace виселица
                     DataBase.AddPlayerToLeaderboard(playerName, wins);
                     Menu.MainMenu();
                 }
+                else
+                {
+                    Level();
+                }
             }
 
             Console.Clear();
@@ -112,7 +126,16 @@ namespace виселица
             while (true)
             {
                 Console.Clear();
-                int difficulty = Menu.SetDifficulty();
+                int SetDifficulty = Menu.SetDifficulty();
+                string difficulty = "";
+                if (SetDifficulty == 1)
+                {
+                    difficulty = "легкий";
+                }
+                else if (SetDifficulty == 2)
+                {
+                    difficulty = "сложный";
+                }
 
                 //Непрерывная игра
                 while (true)
@@ -123,7 +146,7 @@ namespace виселица
 
                     /*if (!_isGameLoaded)
                     {*/
-                    word = DataBase.GetRandomWord(difficulty);
+                    word = DataBase.GetRandomWord(SetDifficulty);
                     hiddenword = new char[word.Length];
                     lives = 6;
 
@@ -131,17 +154,7 @@ namespace виселица
                     {
                         hiddenword[i] = '_';
                     }
-                    /*}
-                    
-                    else
-                    {
-                        //LoadName();
-                        //LoadWord();
-                        //LoadHiddenWord();
-                        //LoadLives();
-                        Console.Clear();
-                    }*/
-
+                   
                     Output.Response(lives, hiddenword);
 
                     while (lives > 0 && new string(hiddenword) != word)

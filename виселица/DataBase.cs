@@ -40,7 +40,7 @@ namespace виселица
             {
                 connection.Open();
 
-                using (SQLiteCommand command = new SQLiteCommand("SELECT dilliculty FROM saves WHERE name = @name", connection))
+                using (SQLiteCommand command = new SQLiteCommand("SELECT difficulty FROM saves WHERE name = @name", connection))
                 {
                     command.Parameters.AddWithValue("@name", playerName);
 
@@ -194,7 +194,7 @@ namespace виселица
             }
         }
 
-        public static void SaveGame(string playerName, string word, string hiddenwordString, int lives, int difficulty)
+        public static void SaveGame(string playerName, string word, string hiddenwordString, int lives, string difficulty)
         {
             string connectionString = "Data Source=.\\test.db; Version=3;";
 
