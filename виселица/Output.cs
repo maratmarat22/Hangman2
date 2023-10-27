@@ -8,22 +8,23 @@ namespace виселица
 {
     public class Output
     {
-        public static void Response(int lives, char[] hiddenword)
+
+    public static void Response(int lives, char[] hiddenword)
         {
             Console.Clear();
-            Output.Hearts(lives);
-            Console.WriteLine("Вы ввели: -\n");
-            Output.Hangman(lives);
-            Console.WriteLine("\n{0}", string.Join(" ", hiddenword));
+            Hearts(lives);
+            Console.Write("\n\n   Вы ввели: -\n");
+            Hangman(lives);
+            Console.WriteLine("\n   {0}\n", string.Join(" ", hiddenword));
         }
 
         public static void Response(int lives, char letter, char[] hiddenword)
         {
-            Output.Hearts(lives);
-            Console.WriteLine("Вы ввели: {0}\n", letter);
-            Output.Hangman(lives);
-            Console.WriteLine("\n{0}", string.Join(" ", hiddenword));
-            Console.WriteLine("\n\n\n0 - сохранить игру");
+            Hearts(lives);
+            Console.Write("\t  (0 - сохранить игру)\n");
+            Console.WriteLine("\n   Вы ввели: {0}\n", letter);
+            Hangman(lives);
+            Console.WriteLine("\n   {0}\n", string.Join(" ", hiddenword));
         }
 
         public static void Hangman(int lives)
@@ -267,7 +268,7 @@ namespace виселица
 
             for (int i = 0; i < hangman.GetLength(0); i++)
             {
-                Console.Write("\t\t\t\t");
+                Console.Write("\t\t\t");
                 for (int j = 0; j < hangman.GetLength(1); j++)
                 {
                     Console.Write(hangman[i, j]);
@@ -278,11 +279,12 @@ namespace виселица
 
         public static void Hearts(int lives)
         {
+            Console.WriteLine();
+            Console.Write("   ");
             for (int i = lives; i > 0; i--)
             {
                 Console.Write('\u2665' + " ");
             }
-            Console.WriteLine();
         }
 
         public static string NameException()
@@ -293,12 +295,12 @@ namespace виселица
             {
                 if (playerName == "0")
                 {
-                    Console.WriteLine("Простите, имя '0' не доступно");
+                    Console.Write("\n   Простите, имя '0' не доступно, попробуйте еще раз:\n\n   > ");
                     playerName = Console.ReadLine();
                 }
                 else if (string.IsNullOrEmpty(playerName))
                 { 
-                    Console.WriteLine("Простите, но имя должно состоять хотя бы из одного символа");
+                    Console.Write("\n   Простите, имя должно состоять хотя бы из одного символа, попробуйте еще раз:\n\n   > ");
                     playerName = Console.ReadLine();
                 }
                 else break;

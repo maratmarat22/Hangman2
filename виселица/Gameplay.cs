@@ -46,16 +46,9 @@ namespace виселица
 
             Output.Response(lives, hiddenword);
 
-
-
-
-            Console.WriteLine(word);
-
-
-
-
             while (lives > 0 && new string(hiddenword) != word)
             {
+                Console.Write("   > ");
                 char letter = char.ToLower(Console.ReadKey().KeyChar);
 
                 Console.Clear();
@@ -66,8 +59,6 @@ namespace виселица
                 {
                     DataBase.RemoveSavedGame(playerName);
                     SaveGame(playerName, word, hiddenword, lives, difficulty, wins);
-                    Console.Clear();
-                    Console.WriteLine("Игра сохранена!");
                     Menu.MainMenu();
                 }
 
@@ -75,7 +66,7 @@ namespace виселица
                 {
                     if (letter == hiddenword[i])
                     {
-                        Console.WriteLine("Вы уже вводили {0}\n", letter);
+                        Console.Write("\n   Вы уже вводили {0}\n", letter);
                         letterFound = true;
                         break;
                     }
@@ -98,7 +89,7 @@ namespace виселица
 
             if (lives == 0)
             {
-                Console.WriteLine("\nВы проиграли\n\nЗагаданное слово - {0}", word);
+                Console.Write("\n   Вы проиграли :(\n\n   Загаданное слово - {0}, нажмите любую клавишу, чтобы продолжить\n\n   > ", word);
                 Console.ReadLine();
 
                 if (wins > 0)
@@ -111,10 +102,10 @@ namespace виселица
             }
             else
             {
-                Console.WriteLine("\nВы выиграли");
+                Console.WriteLine("\n   Вы выиграли :)\n");
                 wins++;
-                Console.Write("Нажмите любую клавишу, чтобы начать новую игру, или 'выход', чтобы выйти: ");
-                string restartChoice = Console.ReadLine();
+                Console.Write("   Нажмите любую клавишу, чтобы начать новую игру, или введите 'выход', чтобы выйти:\n\n   > ");
+                string? restartChoice = Console.ReadLine();
                 if (restartChoice.ToLower() == "выход")
                 {
                     //Console.Write("Введите ваше имя для списка лидеров: ");
@@ -142,17 +133,9 @@ namespace виселица
 
                             Output.Response(lives, hiddenword);
 
-
-
-
-                            Console.WriteLine(word);
-
-
-
-
-
                             while (lives > 0 && new string(hiddenword) != word)
                             {
+                                Console.Write("   > ");
                                 char letter = char.ToLower(Console.ReadKey().KeyChar);
 
                                 Console.Clear();
@@ -176,7 +159,7 @@ namespace виселица
                                 {
                                     if (letter == hiddenword[i])
                                     {
-                                        Console.WriteLine("Вы уже вводили {0}\n", letter);
+                                        Console.Write("\n   Вы уже вводили {0}\n", letter);
                                         letterFound = true;
                                         break;
                                     }
@@ -198,7 +181,7 @@ namespace виселица
 
                             if (lives == 0)
                             {
-                                Console.WriteLine("\nВы проиграли\n\nЗагаднное слово - {0}", word);
+                                Console.Write("\n   Вы проиграли :(\n\n   Загаданное слово - {0}, нажмите любую клавишу, чтобы продолжить\n\n   > ", word);
 
                                 if (wins > 0)
                                 {
@@ -214,9 +197,9 @@ namespace виселица
 
                             else
                             {
-                                Console.WriteLine("\nВы выиграли");
+                                Console.WriteLine("\n   Вы выиграли :)\n");
                                 wins++;
-                                Console.Write("Нажмите любую клавишу, чтобы начать новую игру, или 'выход', чтобы выйти: ");
+                                Console.Write("   Нажмите любую клавишу, чтобы начать новую игру, или введите 'выход', чтобы выйти:\n\n   > ");
                                 restartChoice = Console.ReadLine();
                                 if (restartChoice.ToLower() == "выход")
                                 {
@@ -243,7 +226,7 @@ namespace виселица
             while (true)
             {
                 Console.Clear();
-                int SetDifficulty = Menu.SetDifficulty();
+                int SetDifficulty = int.Parse(Menu.SetDifficulty());
                 string difficulty = "";
                 if (SetDifficulty == 1)
                 {
@@ -280,18 +263,9 @@ namespace виселица
 
                     Output.Response(lives, hiddenword);
 
-
-
-
-                    Console.WriteLine(word);
-
-
-
-
-
-
                     while (lives > 0 && new string(hiddenword) != word)
                     {
+                        Console.Write("   > ");
                         char letter = char.ToLower(Console.ReadKey().KeyChar);
 
                         Console.Clear();
@@ -300,11 +274,10 @@ namespace виселица
 
                         if (letter == '0')
                         {
-                            Console.Write("Введите ваше имя для сохранения: ");
+                            Console.Write("\n   Введите ваше имя для сохранения:\n\n   > ");
                             string playerName = Output.NameException();
+                            DataBase.RemoveSavedGame(playerName);
                             SaveGame(playerName, word, hiddenword, lives, difficulty, wins);
-                            Console.Clear();
-                            Console.WriteLine("Игра сохранена!");
                             Menu.MainMenu();
                         }
 
@@ -312,7 +285,7 @@ namespace виселица
                         {
                             if (letter == hiddenword[i])
                             {
-                                Console.WriteLine("Вы уже вводили {0}\n", letter);
+                                Console.Write("\n   Вы уже вводили {0}\n", letter);
                                 letterFound = true;
                                 break;
                             }
@@ -334,11 +307,12 @@ namespace виселица
 
                     if (lives == 0)
                     {
-                        Console.WriteLine("\nВы проиграли\n\nЗагаданное слово - {0}", word);
+                        Console.Write("\n   Вы проиграли :(\n\n   Загаданное слово - {0}, нажмите любую клавишу, чтобы продолжить\n\n   > ", word);
                         Console.ReadLine();
                         if (wins > 0)
                         {
-                            Console.Write("Введите ваше имя: ");
+                            Console.Clear();
+                            Console.Write("\n   Введите ваше имя для списка лидеров:\n   > ");
                             string? playerName = Output.NameException();
                             DataBase.AddPlayerToLeaderboard(playerName, wins);
                         }
@@ -348,13 +322,14 @@ namespace виселица
 
                     else
                     {
-                        Console.WriteLine("\nВы выиграли");
+                        Console.WriteLine("\n   Вы выиграли :)\n");
                         wins++;
-                        Console.Write("Нажмите любую клавишу, чтобы начать новую игру, или 'выход', чтобы выйти: ");
+                        Console.Write("   Нажмите любую клавишу, чтобы начать новую игру, или введите 'выход', чтобы выйти:\n\n   > ");
                         string restartChoice = Console.ReadLine();
                         if (restartChoice.ToLower() == "выход")
                         {
-                            Console.Write("Введите ваше имя для списка лидеров: ");
+                            Console.Clear();
+                            Console.Write("\n   Введите ваше имя для списка лидеров:\n\n   > ");
                             string? playerName = Output.NameException();
                             DataBase.AddPlayerToLeaderboard(playerName, wins);
                             Menu.MainMenu();

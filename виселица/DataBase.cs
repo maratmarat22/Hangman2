@@ -258,12 +258,12 @@ namespace виселица
                 string sql = "SELECT Name, Wins FROM Leaderboard ORDER BY Wins DESC";
                 SQLiteCommand command = new SQLiteCommand(sql, connection);
                 SQLiteDataReader reader = command.ExecuteReader();
-                Console.WriteLine("Лидеры:");
+                Console.WriteLine("\n\tЛИДЕРЫ:\n");
                 while (reader.Read())
                 {
                     string name = reader.GetString(0);
                     int wins = reader.GetInt32(1);
-                    Console.WriteLine("{0}: {1} побед", name, wins);
+                    Console.WriteLine("   - {0}: {1} побед(ы)\n", name, wins);
                 }
                 reader.Close();
             }
@@ -280,8 +280,9 @@ namespace виселица
                 string sql = "SELECT * FROM saves";
                 SQLiteCommand command = new SQLiteCommand(sql, connection);
                 SQLiteDataReader reader = command.ExecuteReader();
-                Console.WriteLine("0 - вернуться в главное меню");
-                Console.WriteLine("Сохраненные игры: ");
+
+                Console.Write("\n\tСОХРАНЕННЫЕ ИГРЫ:");
+                Console.Write("\t(0 - вернуться в главное меню)\n\n");
                 while (reader.Read())
                 {
                     string playerName = reader.GetString(0);
@@ -290,11 +291,13 @@ namespace виселица
                     string difficulty = reader.GetString(4);
                     int wins = reader.GetInt32(5);
 
-                    Console.WriteLine("Имя игрока: {0}, Угаданное слово: {1}, Жизни: {2}, Уровень: {3}, Побед: {4}", playerName, hiddenWord, lives, difficulty, wins);                    
+                    Console.WriteLine("   - Имя игрока: {0}, Угаданное слово: {1}, Жизни: {2}, Уровень: {3}, Побед: {4}\n", playerName, hiddenWord, lives, difficulty, wins);                    
                 }
                 reader.Close();
 
-                Console.Write("Введите имя игрока, чью игру вы хотите продолжить: ");
+                Console.Write("\n   Введите имя игрока, чью игру вы хотите продолжить:\n\n   > ");
+                
+
                 string playerNameInput = Console.ReadLine();
                 if (playerNameInput == "0")
                 {
@@ -320,12 +323,13 @@ namespace виселица
                         int wins = reader.GetInt32(5);
 
                         Console.Clear();
-                        Console.WriteLine("Продолжаем сохраненную игру:");
-                        Console.WriteLine("Имя игрока: {0}", playerName);
-                        Console.WriteLine("Угаданное слово: {0}", string.Join(" ", hiddenWordArray));
-                        Console.WriteLine("Жизни: {0}", lives);
-                        Console.WriteLine("Уровень: {0}", difficulty);
-                        Console.WriteLine("Побед: {0}", wins);
+                        Console.Write("\n\tСОХРАНЕННЫЕ ИГРЫ\n");
+                        Console.Write("\n   Продолжаем сохраненную игру:\n\n");
+                        Console.WriteLine("   Имя игрока: {0}", playerName);
+                        Console.WriteLine("   Угаданное слово: {0}", string.Join(" ", hiddenWordArray));
+                        Console.WriteLine("   Жизни: {0}", lives);
+                        Console.WriteLine("   Уровень: {0}", difficulty);
+                        Console.Write("   Побед: {0}\n\n   > ", wins);
                         Console.ReadLine();
 
                         reader.Close();
@@ -333,7 +337,7 @@ namespace виселица
                     }
                     else
                     {
-                        Console.WriteLine("Сохраненная игра для игрока {0} не найдена.", playerNameInput);
+                        Console.Write("\n   Сохраненная игра для игрока {0} не найдена, нажмите любую клавишу, чтобы продолжить\n\n   > ", playerNameInput);
                         Console.ReadLine();
                         reader.Close();
                         return "0";
