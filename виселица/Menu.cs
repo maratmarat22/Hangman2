@@ -48,7 +48,6 @@ namespace виселица
         }
         public static int SetDifficulty()
         {
-            Console.Clear();
             Console.WriteLine("Выберите уровень сложности\n1 - нормальный\n2 - сложный\n\n0 - вернуться в главное меню");
             int difficulty;
             bool isValidInput = int.TryParse(Console.ReadLine(), out difficulty);
@@ -57,7 +56,6 @@ namespace виселица
                 Console.WriteLine("Неверный выбор. Пожалуйста, попробуйте снова.");
                 isValidInput = int.TryParse(Console.ReadLine(), out difficulty);
             }
-
             switch (difficulty)
             {
                 case 1:
@@ -71,6 +69,7 @@ namespace виселица
                     break;
 
                 default:
+                    Console.Clear();
                     Console.WriteLine("Неверный выбор. Пожалуйста, попробуйте снова.");
                     return SetDifficulty();
             }

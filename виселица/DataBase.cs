@@ -192,17 +192,34 @@ namespace виселица
 
         public static void AddPlayerToLeaderboard(string playerName, int wins)
         {
-            string connectionString = "Data Source=.\\test.db; Version=3;";
+            string connectionString = "Data Source=test.db; Version=3;";
 
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
-                string sql = "INSERT INTO Leaderboard (Name, Wins) VALUES (@name, @wins)";
-                using (SQLiteCommand command = new SQLiteCommand(sql, connection))
+
+                string checkSql = "SELECT COUNT(*) FROM Leaderboard WHERE Name = @name";
+                using (SQLiteCommand checkCommand = new SQLiteCommand(checkSql, connection))
                 {
-                    command.Parameters.AddWithValue("@name", playerName);
-                    command.Parameters.AddWithValue("@wins", wins);
-                    command.ExecuteNonQuery();
+                    checkCommand.Parameters.AddWithValue("@name", playerName);
+                    int existingCount = Convert.ToInt32(checkCommand.ExecuteScalar());
+
+                    if (existingCount > 0)
+                    {
+                        Console.WriteLine("Имя уже существует. Выберите новое имя:");
+                        playerName = Console.ReadLine();
+
+                        AddPlayerToLeaderboard(playerName, wins);
+                        return; 
+                    }
+                }
+
+                string insertSql = "INSERT INTO Leaderboard (Name, Wins) VALUES (@name, @wins)";
+                using (SQLiteCommand insertCommand = new SQLiteCommand(insertSql, connection))
+                {
+                    insertCommand.Parameters.AddWithValue("@name", playerName);
+                    insertCommand.Parameters.AddWithValue("@wins", wins);
+                    insertCommand.ExecuteNonQuery();
                 }
             }
         }
