@@ -24,7 +24,7 @@ namespace виселица
             string savedHiddenWord = DataBase.GetSavedHiddenWord(playerName);
             int savedLives = DataBase.GetSavedLives(playerName);
             int savedDifficulty = DataBase.GetSavedDifficulty(playerName);
-
+            playerName = DataBase.LoadGame();
 
             Console.Clear();
 
@@ -54,8 +54,8 @@ namespace виселица
 
                 if (letter == '0')
                 {
-                    Console.Write("Введите ваше имя для сохранения: ");
-                    playerName = Console.ReadLine();
+                    //Console.Write("Введите ваше имя для сохранения: ");
+                    //playerName = Console.ReadLine();
                     SaveGame(playerName, word, hiddenword, lives, difficulty);
                     Console.Clear();
                     Console.WriteLine("Игра сохранена!");
@@ -89,9 +89,10 @@ namespace виселица
             if (lives == 0)
             {
                 Console.WriteLine("Вы проиграли");
-                Console.Write("Введите ваше имя: ");
-                playerName = Console.ReadLine();
+                //Console.Write("Введите ваше имя: ");
+                //playerName = Console.ReadLine();
                 DataBase.AddPlayerToLeaderboard(playerName, wins);
+                DataBase.RemoveSavedGame(playerName);
                 Menu.MainMenu();
             }
             else
@@ -101,9 +102,10 @@ namespace виселица
                 string restartChoice = Console.ReadLine();
                 if (restartChoice.ToLower() != "да")
                 {
-                    Console.Write("Введите ваше имя для списка лидеров: ");
-                    playerName = Console.ReadLine();
+                    //Console.Write("Введите ваше имя для списка лидеров: ");
+                    //playerName = Console.ReadLine();
                     DataBase.AddPlayerToLeaderboard(playerName, wins);
+                    DataBase.RemoveSavedGame(playerName);
                     Menu.MainMenu();
                 }
                 else

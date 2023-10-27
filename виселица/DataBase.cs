@@ -9,6 +9,19 @@ namespace виселица
 {
     public class DataBase
     {
+        public static void RemoveSavedGame(string playerName)
+        {
+            using (SQLiteConnection connection = new SQLiteConnection("Data Source=.\\test.db;Version=3;"))
+            {
+                connection.Open();
+
+                using (SQLiteCommand command = new SQLiteCommand("DELETE FROM saves WHERE name = @name", connection))
+                {
+                    command.Parameters.AddWithValue("@name", playerName);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
 
         public static int GetSavedWins(string playerName)
         {
