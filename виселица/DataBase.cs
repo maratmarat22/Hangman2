@@ -235,14 +235,14 @@ namespace виселица
             }
         }
 
-        public static void SaveGame(string playerName, string word, string hiddenwordString, int lives, string difficulty)
+        public static void SaveGame(string playerName, string word, string hiddenwordString, int lives, string difficulty, int wins)
         {
             string connectionString = "Data Source=.\\test.db; Version=3;";
 
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
-                string sql = "INSERT INTO saves (name, word, hidden_word, lives, difficulty) VALUES (@name, @word, @hiddenWord, @lives, @difficulty)";
+                string sql = "INSERT INTO saves (name, word, hidden_word, lives, difficulty, wins) VALUES (@name, @word, @hiddenWord, @lives, @difficulty, @wins)";
                 using (SQLiteCommand command = new SQLiteCommand(sql, connection))
                 {
                     command.Parameters.AddWithValue("@name", playerName);
@@ -250,6 +250,7 @@ namespace виселица
                     command.Parameters.AddWithValue("@hiddenWord", hiddenwordString);
                     command.Parameters.AddWithValue("@lives", lives);
                     command.Parameters.AddWithValue("@difficulty", difficulty);
+                    command.Parameters.AddWithValue("@wins", wins);
                     command.ExecuteNonQuery();
                 }
             }
@@ -295,8 +296,9 @@ namespace виселица
                     string hiddenWord = reader.GetString(2);
                     int lives = reader.GetInt32(3);
                     string difficulty = reader.GetString(4);
+                    int wins = reader.GetInt32(5);
 
-                    Console.WriteLine("Имя игрока: {0}, Угаданное слово: {1}, Жизни: {2}, Уровень {3}", playerName, hiddenWord, lives, difficulty);                    
+                    Console.WriteLine("Имя игрока: {0}, Угаданное слово: {1}, Жизни: {2}, Уровень: {3}, Побед: {4}", playerName, hiddenWord, lives, difficulty, wins);                    
                 }
                 reader.Close();
 
@@ -319,12 +321,11 @@ namespace виселица
 
                         //string word = reader.GetString(1);
 
-                        string word = reader.GetString(1);
-
                         string hiddenWord = reader.GetString(2);
                         char[] hiddenWordArray = hiddenWord.ToCharArray();
                         int lives = reader.GetInt32(3);
                         string difficulty = reader.GetString(4);
+                        int wins = reader.GetInt32(5);
 
                         Console.Clear();
                         Console.WriteLine("Продолжаем сохраненную игру:");
@@ -332,6 +333,7 @@ namespace виселица
                         Console.WriteLine("Угаданное слово: {0}", string.Join(" ", hiddenWordArray));
                         Console.WriteLine("Жизни: {0}", lives);
                         Console.WriteLine("Уровень: {0}", difficulty);
+                        Console.WriteLine("Побед: {0}", wins);
                         Console.ReadLine();
 
                         reader.Close();

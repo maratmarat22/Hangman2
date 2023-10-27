@@ -285,11 +285,6 @@ namespace виселица
             Console.WriteLine();
         }
 
-        public static void Gamover()
-        { 
-        
-        }
-
         public static string NameException()
         {
             string playerName = Console.ReadLine();
