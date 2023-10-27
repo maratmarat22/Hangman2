@@ -250,6 +250,7 @@ namespace виселица
 
         public static string LoadGame()
         {
+            Console.Clear();
             string connectionString = "Data Source=.\\test.db; Version=3;";
 
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
@@ -258,6 +259,7 @@ namespace виселица
                 string sql = "SELECT * FROM saves";
                 SQLiteCommand command = new SQLiteCommand(sql, connection);
                 SQLiteDataReader reader = command.ExecuteReader();
+                Console.WriteLine("0 - вернуться в главное меню");
                 Console.WriteLine("Сохраненные игры: ");
                 while (reader.Read())
                 {
@@ -266,44 +268,51 @@ namespace виселица
                     int lives = reader.GetInt32(3);
                     string difficulty = reader.GetString(4);
 
-                    Console.WriteLine("Имя игрока: {0}, Угаданное слово: {1}, Жизни: {2}, Уровень {3}", playerName, hiddenWord, lives, difficulty);
+                    Console.WriteLine("Имя игрока: {0}, Угаданное слово: {1}, Жизни: {2}, Уровень {3}", playerName, hiddenWord, lives, difficulty);                    
                 }
                 reader.Close();
 
                 Console.Write("Введите имя игрока, чью игру вы хотите продолжить: ");
                 string playerNameInput = Console.ReadLine();
-
-                sql = "SELECT * FROM saves WHERE name = @playerName";
-                command = new SQLiteCommand(sql, connection);
-                command.Parameters.AddWithValue("@playerName", playerNameInput);
-                reader = command.ExecuteReader();
-                if (reader.Read())
+                if (playerNameInput == "0")
                 {
-                    string playerName = reader.GetString(0);
-                    string word = reader.GetString(1);
-                    string hiddenWord = reader.GetString(2);
-                    char[] hiddenWordArray = hiddenWord.ToCharArray();                   
-                    int lives = reader.GetInt32(3);
-                    string difficulty = reader.GetString(4);
-
-                    Console.Clear();
-                    Console.WriteLine("Продолжаем сохраненную игру:");
-                    Console.WriteLine("Имя игрока: {0}", playerName);
-                    Console.WriteLine("Угаданное слово: {0}", string.Join(" ", hiddenWordArray));
-                    Console.WriteLine("Жизни: {0}", lives);
-                    Console.WriteLine("Уровень: {0}", difficulty);
-                    Console.ReadLine();
-
-                    reader.Close();
-                    return playerNameInput;
+                    Menu.MainMenu();
+                    return "0";
                 }
                 else
                 {
-                    Console.WriteLine("Сохраненная игра для игрока {0} не найдена.", playerNameInput);
-                    
-                    reader.Close();
-                    return "0";
-                }
+                    sql = "SELECT * FROM saves WHERE name = @playerName";
+                    command = new SQLiteCommand(sql, connection);
+                    command.Parameters.AddWithValue("@playerName", playerNameInput);
+                    reader = command.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        string playerName = reader.GetString(0);
+                        string word = reader.GetString(1);
+                        string hiddenWord = reader.GetString(2);
+                        char[] hiddenWordArray = hiddenWord.ToCharArray();
+                        int lives = reader.GetInt32(3);
+                        string difficulty = reader.GetString(4);
+
+                        Console.Clear();
+                        Console.WriteLine("Продолжаем сохраненную игру:");
+                        Console.WriteLine("Имя игрока: {0}", playerName);
+                        Console.WriteLine("Угаданное слово: {0}", string.Join(" ", hiddenWordArray));
+                        Console.WriteLine("Жизни: {0}", lives);
+                        Console.WriteLine("Уровень: {0}", difficulty);
+                        Console.ReadLine();
+
+                        reader.Close();
+                        return playerNameInput;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Сохраненная игра для игрока {0} не найдена.", playerNameInput);
+
+                        reader.Close();
+                        return "0";
+                    }
+                }                                
             }
         }
     }

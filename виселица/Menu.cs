@@ -46,12 +46,18 @@ namespace виселица
                     break;
             }
         }
-        
         public static int SetDifficulty()
         {
             Console.Clear();
-            Console.WriteLine("Выберите уровень сложности\n1 - нормальный\n2 - сложный");
-            int difficulty = int.Parse(Console.ReadLine());
+            Console.WriteLine("Выберите уровень сложности\n1 - нормальный\n2 - сложный\n\n0 - вернуться в главное меню");
+            int difficulty;
+            bool isValidInput = int.TryParse(Console.ReadLine(), out difficulty);
+            while (!isValidInput)
+            {
+                Console.WriteLine("Неверный выбор. Пожалуйста, попробуйте снова.");
+                isValidInput = int.TryParse(Console.ReadLine(), out difficulty);
+            }
+
             switch (difficulty)
             {
                 case 1:
@@ -60,12 +66,15 @@ namespace виселица
                 case 2:
                     break;
 
-                default:
-                    Console.Clear();
-                    Console.WriteLine("\nНеверный выбор. Пожалуйста, попробуйте снова.");
-                    SetDifficulty();
+                case 0:
+                    MainMenu();
                     break;
+
+                default:
+                    Console.WriteLine("Неверный выбор. Пожалуйста, попробуйте снова.");
+                    return SetDifficulty();
             }
+
             return difficulty;
         }
     }
