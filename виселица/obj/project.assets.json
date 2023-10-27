@@ -1220,11 +1220,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Nezna\\OneDrive\\Desktop\\Новая папка (2)\\виселица\\виселица.csproj",
+      "projectUniqueName": "C:\\Users\\Nezna\\OneDrive\\Desktop\\final\\виселица\\виселица.csproj",
       "projectName": "виселица",
-      "projectPath": "C:\\Users\\Nezna\\OneDrive\\Desktop\\Новая папка (2)\\виселица\\виселица.csproj",
+      "projectPath": "C:\\Users\\Nezna\\OneDrive\\Desktop\\final\\виселица\\виселица.csproj",
       "packagesPath": "C:\\Users\\Nezna\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Nezna\\OneDrive\\Desktop\\Новая папка (2)\\виселица\\obj\\",
+      "outputPath": "C:\\Users\\Nezna\\OneDrive\\Desktop\\final\\виселица\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Nezna\\AppData\\Roaming\\NuGet\\NuGet.Config",

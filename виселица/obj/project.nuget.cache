@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qbbosTHAgkGE56QJvs9mlOH8SyKBkPDxR5EBFj2ZQXNNeNxmvk63KeDKCGsHwAXQPQcYaHw0YJOuXXul4+bCtw==",
+  "dgSpecHash": "e/4j0VYr1hWr0NkvuAQqlUOq0vcsaUHmCnfvmKyAVPR96IHmANO0uS+WxbhQM0jgEq5WdOEVuHrOfzYaycg0iw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Nezna\\OneDrive\\Desktop\\Новая папка (2)\\виселица\\виселица.csproj",
+  "projectFilePath": "C:\\Users\\Nezna\\OneDrive\\Desktop\\final\\виселица\\виселица.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Nezna\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\Nezna\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
