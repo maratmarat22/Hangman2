@@ -40,3 +40,87 @@ C:\Users\ASUS\Desktop\шарп\виселица\виселица\bin\Debug\net7.
 C:\Users\ASUS\Desktop\шарп\виселица\виселица\bin\Debug\net7.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\ASUS\Desktop\шарп\виселица\виселица\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 C:\Users\ASUS\Desktop\шарп\виселица\виселица\obj\Debug\net7.0\виселица.csproj.CopyComplete
+C:\Users\Nezna\OneDrive\Desktop\Новая папка (2)\виселица\obj\Debug\net7.0\виселица.csproj.AssemblyReference.cache
+C:\Users\Nezna\OneDrive\Desktop\Новая папка (2)\виселица\obj\Debug\net7.0\виселица.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Nezna\OneDrive\Desktop\Новая папка (2)\виселица\obj\Debug\net7.0\виселица.AssemblyInfoInputs.cache
+C:\Users\Nezna\OneDrive\Desktop\Новая папка (2)\виселица\obj\Debug\net7.0\виселица.AssemblyInfo.cs
+C:\Users\Nezna\OneDrive\Desktop\Новая папка (2)\виселица\obj\Debug\net7.0\виселица.csproj.CoreCompileInputs.cache
+C:\Users\Nezna\OneDrive\Desktop\Новая папка (2)\виселица\obj\Debug\net7.0\виселица.dll
+C:\Users\Nezna\OneDrive\Desktop\Новая папка (2)\виселица\obj\Debug\net7.0\refint\виселица.dll
+C:\Users\Nezna\OneDrive\Desktop\Новая папка (2)\виселица\obj\Debug\net7.0\виселица.pdb
+C:\Users\Nezna\OneDrive\Desktop\Новая папка (2)\виселица\bin\Debug\net7.0\виселица.exe
+C:\Users\Nezna\OneDrive\Desktop\Новая папка (2)\виселица\bin\Debug\net7.0\виселица.deps.json
+C:\Users\Nezna\OneDrive\Desktop\Новая папка (2)\виселица\bin\Debug\net7.0\виселица.runtimeconfig.json
+C:\Users\Nezna\OneDrive\Desktop\Новая папка (2)\виселица\bin\Debug\net7.0\виселица.dll
+C:\Users\Nezna\OneDrive\Desktop\Новая папка (2)\виселица\bin\Debug\net7.0\виселица.pdb
+C:\Users\Nezna\OneDrive\Desktop\Новая папка (2)\виселица\bin\Debug\net7.0\EntityFramework.SqlServer.dll
+C:\Users\Nezna\OneDrive\Desktop\Новая папка (2)\виселица\bin\Debug\net7.0\EntityFramework.dll
+C:\Users\Nezna\OneDrive\Desktop\Новая папка (2)\виселица\bin\Debug\net7.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\Nezna\OneDrive\Desktop\Новая папка (2)\виселица\bin\Debug\net7.0\System.Data.SQLite.dll
+C:\Users\Nezna\OneDrive\Desktop\Новая папка (2)\виселица\bin\Debug\net7.0\System.CodeDom.dll
+C:\Users\Nezna\OneDrive\Desktop\Новая папка (2)\виселица\bin\Debug\net7.0\System.Configuration.ConfigurationManager.dll
+C:\Users\Nezna\OneDrive\Desktop\Новая папка (2)\виселица\bin\Debug\net7.0\System.Data.SqlClient.dll
+C:\Users\Nezna\OneDrive\Desktop\Новая папка (2)\виселица\bin\Debug\net7.0\System.Data.SQLite.EF6.dll
+C:\Users\Nezna\OneDrive\Desktop\Новая папка (2)\виселица\bin\Debug\net7.0\System.Drawing.Common.dll
+C:\Users\Nezna\OneDrive\Desktop\Новая папка (2)\виселица\bin\Debug\net7.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\Nezna\OneDrive\Desktop\Новая папка (2)\виселица\bin\Debug\net7.0\System.Security.Permissions.dll
+C:\Users\Nezna\OneDrive\Desktop\Новая папка (2)\виселица\bin\Debug\net7.0\System.Windows.Extensions.dll
+C:\Users\Nezna\OneDrive\Desktop\Новая папка (2)\виселица\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\Nezna\OneDrive\Desktop\Новая папка (2)\виселица\bin\Debug\net7.0\runtimes\win-arm64\native\sni.dll
+C:\Users\Nezna\OneDrive\Desktop\Новая папка (2)\виселица\bin\Debug\net7.0\runtimes\win-x64\native\sni.dll
+C:\Users\Nezna\OneDrive\Desktop\Новая папка (2)\виселица\bin\Debug\net7.0\runtimes\win-x86\native\sni.dll
+C:\Users\Nezna\OneDrive\Desktop\Новая папка (2)\виселица\bin\Debug\net7.0\runtimes\linux-x64\native\SQLite.Interop.dll
+C:\Users\Nezna\OneDrive\Desktop\Новая папка (2)\виселица\bin\Debug\net7.0\runtimes\osx-x64\native\SQLite.Interop.dll
+C:\Users\Nezna\OneDrive\Desktop\Новая папка (2)\виселица\bin\Debug\net7.0\runtimes\win-x64\native\SQLite.Interop.dll
+C:\Users\Nezna\OneDrive\Desktop\Новая папка (2)\виселица\bin\Debug\net7.0\runtimes\win-x86\native\SQLite.Interop.dll
+C:\Users\Nezna\OneDrive\Desktop\Новая папка (2)\виселица\bin\Debug\net7.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\Nezna\OneDrive\Desktop\Новая папка (2)\виселица\bin\Debug\net7.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\Nezna\OneDrive\Desktop\Новая папка (2)\виселица\bin\Debug\net7.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\Nezna\OneDrive\Desktop\Новая папка (2)\виселица\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\Nezna\OneDrive\Desktop\Новая папка (2)\виселица\bin\Debug\net7.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\Nezna\OneDrive\Desktop\Новая папка (2)\виселица\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+C:\Users\Nezna\OneDrive\Desktop\Новая папка (2)\виселица\obj\Debug\net7.0\виселица.csproj.CopyComplete
+C:\Users\Nezna\OneDrive\Desktop\Новая папка (2)\виселица\obj\Debug\net7.0\виселица.genruntimeconfig.cache
+C:\Users\Nezna\OneDrive\Desktop\Новая папка (2)\виселица\obj\Debug\net7.0\ref\виселица.dll
+C:\Users\Nezna\OneDrive\Desktop\final\виселица\bin\Debug\net7.0\виселица.exe
+C:\Users\Nezna\OneDrive\Desktop\final\виселица\bin\Debug\net7.0\виселица.deps.json
+C:\Users\Nezna\OneDrive\Desktop\final\виселица\bin\Debug\net7.0\виселица.runtimeconfig.json
+C:\Users\Nezna\OneDrive\Desktop\final\виселица\bin\Debug\net7.0\виселица.dll
+C:\Users\Nezna\OneDrive\Desktop\final\виселица\bin\Debug\net7.0\виселица.pdb
+C:\Users\Nezna\OneDrive\Desktop\final\виселица\bin\Debug\net7.0\EntityFramework.SqlServer.dll
+C:\Users\Nezna\OneDrive\Desktop\final\виселица\bin\Debug\net7.0\EntityFramework.dll
+C:\Users\Nezna\OneDrive\Desktop\final\виселица\bin\Debug\net7.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\Nezna\OneDrive\Desktop\final\виселица\bin\Debug\net7.0\System.Data.SQLite.dll
+C:\Users\Nezna\OneDrive\Desktop\final\виселица\bin\Debug\net7.0\System.CodeDom.dll
+C:\Users\Nezna\OneDrive\Desktop\final\виселица\bin\Debug\net7.0\System.Configuration.ConfigurationManager.dll
+C:\Users\Nezna\OneDrive\Desktop\final\виселица\bin\Debug\net7.0\System.Data.SqlClient.dll
+C:\Users\Nezna\OneDrive\Desktop\final\виселица\bin\Debug\net7.0\System.Data.SQLite.EF6.dll
+C:\Users\Nezna\OneDrive\Desktop\final\виселица\bin\Debug\net7.0\System.Drawing.Common.dll
+C:\Users\Nezna\OneDrive\Desktop\final\виселица\bin\Debug\net7.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\Nezna\OneDrive\Desktop\final\виселица\bin\Debug\net7.0\System.Security.Permissions.dll
+C:\Users\Nezna\OneDrive\Desktop\final\виселица\bin\Debug\net7.0\System.Windows.Extensions.dll
+C:\Users\Nezna\OneDrive\Desktop\final\виселица\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\Nezna\OneDrive\Desktop\final\виселица\bin\Debug\net7.0\runtimes\win-arm64\native\sni.dll
+C:\Users\Nezna\OneDrive\Desktop\final\виселица\bin\Debug\net7.0\runtimes\win-x64\native\sni.dll
+C:\Users\Nezna\OneDrive\Desktop\final\виселица\bin\Debug\net7.0\runtimes\win-x86\native\sni.dll
+C:\Users\Nezna\OneDrive\Desktop\final\виселица\bin\Debug\net7.0\runtimes\linux-x64\native\SQLite.Interop.dll
+C:\Users\Nezna\OneDrive\Desktop\final\виселица\bin\Debug\net7.0\runtimes\osx-x64\native\SQLite.Interop.dll
+C:\Users\Nezna\OneDrive\Desktop\final\виселица\bin\Debug\net7.0\runtimes\win-x64\native\SQLite.Interop.dll
+C:\Users\Nezna\OneDrive\Desktop\final\виселица\bin\Debug\net7.0\runtimes\win-x86\native\SQLite.Interop.dll
+C:\Users\Nezna\OneDrive\Desktop\final\виселица\bin\Debug\net7.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\Nezna\OneDrive\Desktop\final\виселица\bin\Debug\net7.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\Nezna\OneDrive\Desktop\final\виселица\bin\Debug\net7.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\Nezna\OneDrive\Desktop\final\виселица\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\Nezna\OneDrive\Desktop\final\виселица\bin\Debug\net7.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\Nezna\OneDrive\Desktop\final\виселица\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+C:\Users\Nezna\OneDrive\Desktop\final\виселица\obj\Debug\net7.0\виселица.csproj.AssemblyReference.cache
+C:\Users\Nezna\OneDrive\Desktop\final\виселица\obj\Debug\net7.0\виселица.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Nezna\OneDrive\Desktop\final\виселица\obj\Debug\net7.0\виселица.AssemblyInfoInputs.cache
+C:\Users\Nezna\OneDrive\Desktop\final\виселица\obj\Debug\net7.0\виселица.AssemblyInfo.cs
+C:\Users\Nezna\OneDrive\Desktop\final\виселица\obj\Debug\net7.0\виселица.csproj.CoreCompileInputs.cache
+C:\Users\Nezna\OneDrive\Desktop\final\виселица\obj\Debug\net7.0\виселица.csproj.CopyComplete
+C:\Users\Nezna\OneDrive\Desktop\final\виселица\obj\Debug\net7.0\виселица.dll
+C:\Users\Nezna\OneDrive\Desktop\final\виселица\obj\Debug\net7.0\refint\виселица.dll
+C:\Users\Nezna\OneDrive\Desktop\final\виселица\obj\Debug\net7.0\виселица.pdb
+C:\Users\Nezna\OneDrive\Desktop\final\виселица\obj\Debug\net7.0\виселица.genruntimeconfig.cache
+C:\Users\Nezna\OneDrive\Desktop\final\виселица\obj\Debug\net7.0\ref\виселица.dll

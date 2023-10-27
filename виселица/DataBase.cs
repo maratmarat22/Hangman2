@@ -209,6 +209,7 @@ namespace виселица
                         Console.WriteLine("Имя уже существует. Выберите новое имя:");
                         playerName = Console.ReadLine();
 
+
                         while (true)
                         {
                             if (playerName == "0")
@@ -218,6 +219,7 @@ namespace виселица
                             }
                             else break;
                         }
+
                         AddPlayerToLeaderboard(playerName, wins);
                         return; 
                     }
@@ -314,7 +316,11 @@ namespace виселица
                     if (reader.Read())
                     {
                         string playerName = reader.GetString(0);
+
                         //string word = reader.GetString(1);
+
+                        string word = reader.GetString(1);
+
                         string hiddenWord = reader.GetString(2);
                         char[] hiddenWordArray = hiddenWord.ToCharArray();
                         int lives = reader.GetInt32(3);
