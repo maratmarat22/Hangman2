@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Data.SQLite;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -63,8 +64,7 @@ namespace виселица
 
                 if (letter == '0')
                 {
-                    //Console.Write("Введите ваше имя для сохранения: ");
-                    //playerName = Console.ReadLine();
+                    DataBase.RemoveSavedGame(playerName);
                     SaveGame(playerName, word, hiddenword, lives, difficulty, wins);
                     Console.Clear();
                     Console.WriteLine("Игра сохранена!");
@@ -89,7 +89,7 @@ namespace виселица
 
                 if (!letterFound)
                 {
-                    
+
                     lives--;
                 }
 
@@ -100,15 +100,14 @@ namespace виселица
             {
                 Console.WriteLine("\nВы проиграли\n\nЗагаданное слово - {0}", word);
                 Console.ReadLine();
-                //Console.Write("Введите ваше имя: ");
-                //playerName = Console.ReadLine();
-                
+
                 if (wins > 0)
                 {
                     DataBase.AddPlayerToLeaderboard(playerName, wins);
                 }
-                    DataBase.RemoveSavedGame(playerName);                
-                    Menu.MainMenu();
+
+                DataBase.RemoveSavedGame(playerName);
+                Menu.MainMenu();
             }
             else
             {
@@ -126,16 +125,114 @@ namespace виселица
                 }
                 else
                 {
-
                     while (true)
                     {
                         Console.Clear();
 
-                        Level();
+                        //Непрерывная игра
+                        while (true)
+                        {
+                            word = DataBase.GetRandomWord(savedDifficulty);
+                            hiddenword = new char[word.Length];
+
+                            for (int i = 0; i < word.Length; i++)
+                            {
+                                hiddenword[i] = '_';
+                            }
+
+                            Output.Response(lives, hiddenword);
+
+
+
+
+                            Console.WriteLine(word);
+
+
+
+
+
+                            while (lives > 0 && new string(hiddenword) != word)
+                            {
+                                char letter = char.ToLower(Console.ReadKey().KeyChar);
+
+                                Console.Clear();
+
+                                bool letterFound = false;
+
+                                if (letter == '0')
+                                {
+                                    //Console.Write("Введите ваше имя для сохранения: ");
+
+                                    //playerName = Output.NameException();
+                                    
+                                    DataBase.RemoveSavedGame(playerName);
+                                    SaveGame(playerName, word, hiddenword, lives, difficulty, wins);
+                                    Console.Clear();
+                                    Console.WriteLine("Игра сохранена!");
+                                    Menu.MainMenu();
+                                }
+
+                                for (int i = 0; i < word.Length; i++)
+                                {
+                                    if (letter == hiddenword[i])
+                                    {
+                                        Console.WriteLine("Вы уже вводили {0}\n", letter);
+                                        letterFound = true;
+                                        break;
+                                    }
+
+                                    if (letter == word[i])
+                                    {
+                                        hiddenword[i] = letter;
+                                        letterFound = true;
+                                    }
+                                }
+
+                                if (!letterFound)
+                                {
+                                    lives--;
+                                }
+
+                                Output.Response(lives, letter, hiddenword);
+                            }
+
+                            if (lives == 0)
+                            {
+                                Console.WriteLine("\nВы проиграли\n\nЗагаднное слово - {0}", word);
+
+                                if (wins > 0)
+                                {
+                                    //Console.Write("Введите ваше имя: ");
+
+                                    //playerName = Output.NameException();
+
+                                    DataBase.AddPlayerToLeaderboard(playerName, wins);
+                                }
+
+                                Menu.MainMenu();
+                            }
+
+                            else
+                            {
+                                Console.WriteLine("\nВы выиграли");
+                                wins++;
+                                Console.Write("Нажмите любую клавишу, чтобы начать новую игру, или 'выход', чтобы выйти: ");
+                                restartChoice = Console.ReadLine();
+                                if (restartChoice.ToLower() == "выход")
+                                {
+                                    //Console.Write("Введите ваше имя для списка лидеров: ");
+
+                                    //playerName = Output.NameException();
+
+                                    DataBase.AddPlayerToLeaderboard(playerName, wins);
+                                    Menu.MainMenu();
+                                }
+                            }
+                            Console.Clear();
+                        }
                     }
                 }
             }
-
             Console.Clear();
         }
 
@@ -182,10 +279,10 @@ namespace виселица
                     }
 
                     Output.Response(lives, hiddenword);
-                    
-                    
-                    
-                    
+
+
+
+
                     Console.WriteLine(word);
 
 
@@ -245,7 +342,7 @@ namespace виселица
                             string? playerName = Output.NameException();
                             DataBase.AddPlayerToLeaderboard(playerName, wins);
                         }
-                        
+
                         Menu.MainMenu();
                     }
 
@@ -267,5 +364,5 @@ namespace виселица
                 }
             }
         }
-            }
+    }
 }

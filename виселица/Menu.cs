@@ -36,6 +36,7 @@ namespace виселица
                     {
                         Gameplay.ContinueSavedGame(playerNameInput);
                     }
+                    else { goto case 4; }
 
                     break;
 

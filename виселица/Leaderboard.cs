@@ -13,7 +13,7 @@ namespace виселица
             Console.Clear();
             DataBase.DisplayLeaderboard();
             bool validOption = false;
-            Console.WriteLine("1 - вернуться в главное меню");
+            Console.WriteLine("\n1 - вернуться в главное меню");
             while (!validOption)
             {
                 string? leaderboardChoice = Console.ReadLine();

@@ -37,7 +37,10 @@ namespace виселица
 
                     using (SQLiteDataReader reader = command.ExecuteReader())
                     {
-                        savedWins = reader.GetInt32(0);
+                        if (reader.Read())
+                        {
+                            savedWins = reader.GetInt32(0);
+                        }
                     }
                 }
             }
@@ -207,18 +210,7 @@ namespace виселица
                     if (existingCount > 0)
                     {
                         Console.WriteLine("Имя уже существует. Выберите новое имя:");
-                        playerName = Console.ReadLine();
-
-
-                        while (true)
-                        {
-                            if (playerName == "0")
-                            {
-                                Console.WriteLine("Простите, имя '0' не доступно");
-                                playerName = Console.ReadLine();
-                            }
-                            else break;
-                        }
+                        playerName = Output.NameException();
 
                         AddPlayerToLeaderboard(playerName, wins);
                         return; 
@@ -342,7 +334,7 @@ namespace виселица
                     else
                     {
                         Console.WriteLine("Сохраненная игра для игрока {0} не найдена.", playerNameInput);
-
+                        Console.ReadLine();
                         reader.Close();
                         return "0";
                     }
