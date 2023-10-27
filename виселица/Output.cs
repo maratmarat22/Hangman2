@@ -30,35 +30,177 @@ namespace виселица
         {
             char[,] hangman =
                     {
-                    { ' ' , '*' , '-' , '-' , '-' , '-' , '*' , ' ' , ' ' },
-                    { ' ' , '|' , ' ' , ' ' , ' ' , ' ' , '|' , ' ' , ' ' },
-                    { ' ' , ' ' , ' ' , ' ' , ' ' , ' ' , '|' , ' ' , ' ' },
-                    { ' ' , ' ' , ' ' , ' ' , ' ' , ' ' , '|' , ' ' , ' ' },
-                    { ' ' , ' ' , ' ' , ' ' , ' ' , ' ' , '|' , ' ' , ' ' },
-                    { ' ' , ' ' , ' ' , ' ' , '=' , '=' , '=' , '=' , '=' }
+                    { ' ' , ' ' , ' ' , ' ' , ' ' , ' ' , ' ' , ' ' , ' ' },
+                    { ' ' , ' ' , ' ' , ' ' , ' ' , ' ' , ' ' , ' ' , ' ' },
+                    { ' ' , ' ' , ' ' , ' ' , ' ' , ' ' , ' ' , ' ' , ' ' },
+                    { ' ' , ' ' , ' ' , ' ' , ' ' , ' ' , ' ' , ' ' , ' ' },
+                    { ' ' , ' ' , ' ' , ' ' , ' ' , ' ' , ' ' , ' ' , ' ' },
+                    { ' ' , ' ' , ' ' , ' ' , ' ' , ' ' , ' ' , ' ' , ' ' }
                     };
 
             switch (lives)
             {
+                case 10:
+                    break;
+
+                case 9:
+                    hangman[5, 4] = '=';
+                    hangman[5, 5] = '=';
+                    hangman[5, 6] = '=';
+                    hangman[5, 7] = '=';
+                    hangman[5, 8] = '=';
+                    break;
+
+                case 8:
+                    hangman[5, 4] = '=';
+                    hangman[5, 5] = '=';
+                    hangman[5, 6] = '=';
+                    hangman[5, 7] = '=';
+                    hangman[5, 8] = '=';
+
+                    hangman[4, 6] = '|';
+                    hangman[3, 6] = '|';
+                    hangman[2, 6] = '|';
+                    hangman[1, 6] = '|';
+                    break;
+                
+                case 7:
+                    hangman[5, 4] = '=';
+                    hangman[5, 5] = '=';
+                    hangman[5, 6] = '=';
+                    hangman[5, 7] = '=';
+                    hangman[5, 8] = '=';
+
+                    hangman[4, 6] = '|';
+                    hangman[3, 6] = '|';
+                    hangman[2, 6] = '|';
+                    hangman[1, 6] = '|';
+
+                    hangman[0, 1] = '*';
+                    hangman[0, 2] = '-';
+                    hangman[0, 3] = '-';
+                    hangman[0, 4] = '-';
+                    hangman[0, 5] = '-';
+                    hangman[0, 6] = '*';
+                    break;
                 case 6:
+                    hangman[5, 4] = '=';
+                    hangman[5, 5] = '=';
+                    hangman[5, 6] = '=';
+                    hangman[5, 7] = '=';
+                    hangman[5, 8] = '=';
+
+                    hangman[4, 6] = '|';
+                    hangman[3, 6] = '|';
+                    hangman[2, 6] = '|';
+                    hangman[1, 6] = '|';
+
+                    hangman[0, 1] = '*';
+                    hangman[0, 2] = '-';
+                    hangman[0, 3] = '-';
+                    hangman[0, 4] = '-';
+                    hangman[0, 5] = '-';
+                    hangman[0, 6] = '*';
+
+                    hangman[1, 1] = '|';
                     break;
 
                 case 5:
+                    hangman[5, 4] = '=';
+                    hangman[5, 5] = '=';
+                    hangman[5, 6] = '=';
+                    hangman[5, 7] = '=';
+                    hangman[5, 8] = '=';
+
+                    hangman[4, 6] = '|';
+                    hangman[3, 6] = '|';
+                    hangman[2, 6] = '|';
+                    hangman[1, 6] = '|';
+
+                    hangman[0, 1] = '*';
+                    hangman[0, 2] = '-';
+                    hangman[0, 3] = '-';
+                    hangman[0, 4] = '-';
+                    hangman[0, 5] = '-';
+                    hangman[0, 6] = '*';
+
+                    hangman[1, 1] = '|';
+
                     hangman[2, 1] = 'O';
                     break;
 
                 case 4:
+                    hangman[5, 4] = '=';
+                    hangman[5, 5] = '=';
+                    hangman[5, 6] = '=';
+                    hangman[5, 7] = '=';
+                    hangman[5, 8] = '=';
+
+                    hangman[4, 6] = '|';
+                    hangman[3, 6] = '|';
+                    hangman[2, 6] = '|';
+                    hangman[1, 6] = '|';
+
+                    hangman[0, 1] = '*';
+                    hangman[0, 2] = '-';
+                    hangman[0, 3] = '-';
+                    hangman[0, 4] = '-';
+                    hangman[0, 5] = '-';
+                    hangman[0, 6] = '*';
+
+                    hangman[1, 1] = '|';
+
                     hangman[2, 1] = 'O';
                     hangman[3, 1] = '|';
                     break;
 
                 case 3:
+                    hangman[5, 4] = '=';
+                    hangman[5, 5] = '=';
+                    hangman[5, 6] = '=';
+                    hangman[5, 7] = '=';
+                    hangman[5, 8] = '=';
+
+                    hangman[4, 6] = '|';
+                    hangman[3, 6] = '|';
+                    hangman[2, 6] = '|';
+                    hangman[1, 6] = '|';
+
+                    hangman[0, 1] = '*';
+                    hangman[0, 2] = '-';
+                    hangman[0, 3] = '-';
+                    hangman[0, 4] = '-';
+                    hangman[0, 5] = '-';
+                    hangman[0, 6] = '*';
+
+                    hangman[1, 1] = '|';
+
                     hangman[2, 1] = 'O';
                     hangman[3, 1] = '|';
                     hangman[3, 0] = '/';
                     break;
 
                 case 2:
+                    hangman[5, 4] = '=';
+                    hangman[5, 5] = '=';
+                    hangman[5, 6] = '=';
+                    hangman[5, 7] = '=';
+                    hangman[5, 8] = '=';
+
+                    hangman[4, 6] = '|';
+                    hangman[3, 6] = '|';
+                    hangman[2, 6] = '|';
+                    hangman[1, 6] = '|';
+
+                    hangman[0, 1] = '*';
+                    hangman[0, 2] = '-';
+                    hangman[0, 3] = '-';
+                    hangman[0, 4] = '-';
+                    hangman[0, 5] = '-';
+                    hangman[0, 6] = '*';
+
+                    hangman[1, 1] = '|';
+
                     hangman[2, 1] = 'O';
                     hangman[3, 1] = '|';
                     hangman[3, 0] = '/';
@@ -66,6 +208,26 @@ namespace виселица
                     break;
 
                 case 1:
+                    hangman[5, 4] = '=';
+                    hangman[5, 5] = '=';
+                    hangman[5, 6] = '=';
+                    hangman[5, 7] = '=';
+                    hangman[5, 8] = '=';
+
+                    hangman[4, 6] = '|';
+                    hangman[3, 6] = '|';
+                    hangman[2, 6] = '|';
+                    hangman[1, 6] = '|';
+
+                    hangman[0, 1] = '*';
+                    hangman[0, 2] = '-';
+                    hangman[0, 3] = '-';
+                    hangman[0, 4] = '-';
+                    hangman[0, 5] = '-';
+                    hangman[0, 6] = '*';
+
+                    hangman[1, 1] = '|';
+
                     hangman[2, 1] = 'O';
                     hangman[3, 1] = '|';
                     hangman[3, 0] = '/';
@@ -74,6 +236,26 @@ namespace виселица
                     break;
 
                 case 0:
+                    hangman[5, 4] = '=';
+                    hangman[5, 5] = '=';
+                    hangman[5, 6] = '=';
+                    hangman[5, 7] = '=';
+                    hangman[5, 8] = '=';
+
+                    hangman[4, 6] = '|';
+                    hangman[3, 6] = '|';
+                    hangman[2, 6] = '|';
+                    hangman[1, 6] = '|';
+
+                    hangman[0, 1] = '*';
+                    hangman[0, 2] = '-';
+                    hangman[0, 3] = '-';
+                    hangman[0, 4] = '-';
+                    hangman[0, 5] = '-';
+                    hangman[0, 6] = '*';
+
+                    hangman[1, 1] = '|';
+
                     hangman[2, 1] = 'O';
                     hangman[3, 1] = '|';
                     hangman[3, 0] = '/';
@@ -106,6 +288,27 @@ namespace виселица
         public static void Gamover()
         { 
         
+        }
+
+        public static string NameException()
+        {
+            string playerName = Console.ReadLine();
+
+            while (true)
+            {
+                if (playerName == "0")
+                {
+                    Console.WriteLine("Простите, имя '0' не доступно");
+                    playerName = Console.ReadLine();
+                }
+                else if (string.IsNullOrEmpty(playerName))
+                { 
+                    Console.WriteLine("Простите, но имя должно состоять хотя бы из одного символа");
+                    playerName = Console.ReadLine();
+                }
+                else break;
+            }
+            return playerName;
         }
     }
 }

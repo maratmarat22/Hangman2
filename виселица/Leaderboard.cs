@@ -11,9 +11,9 @@ namespace виселица
         public static void Show()
         {
             Console.Clear();
-            Console.WriteLine("1 - вернуться в главное меню");
             DataBase.DisplayLeaderboard();
             bool validOption = false;
+            Console.WriteLine("1 - вернуться в главное меню");
             while (!validOption)
             {
                 string? leaderboardChoice = Console.ReadLine();
