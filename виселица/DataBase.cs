@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SQLite;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.SQLite;
 
 namespace виселица
 {
@@ -11,11 +6,11 @@ namespace виселица
     {
         public static void RemoveSavedGame(string playerName)
         {
-            using (SQLiteConnection connection = new SQLiteConnection("Data Source=.\\test.db;Version=3;"))
+            using (SQLiteConnection connection = new("Data Source=.\\test.db;Version=3;"))
             {
                 connection.Open();
 
-                using (SQLiteCommand command = new SQLiteCommand("DELETE FROM saves WHERE name = @name", connection))
+                using (SQLiteCommand command = new("DELETE FROM saves WHERE name = @name", connection))
                 {
                     command.Parameters.AddWithValue("@name", playerName);
                     command.ExecuteNonQuery();
@@ -27,11 +22,11 @@ namespace виселица
         {
             int savedWins = 0;
 
-            using (SQLiteConnection connection = new SQLiteConnection("Data Source=.\\test.db;Version=3;"))
+            using (SQLiteConnection connection = new("Data Source=.\\test.db;Version=3;"))
             {
                 connection.Open();
 
-                using (SQLiteCommand command = new SQLiteCommand("SELECT wins FROM saves WHERE name = @name", connection))
+                using (SQLiteCommand command = new("SELECT wins FROM saves WHERE name = @name", connection))
                 {
                     command.Parameters.AddWithValue("@name", playerName);
 
@@ -52,11 +47,11 @@ namespace виселица
             string sqlDifficulty = string.Empty;
             int savedDifficulty = 0;
 
-            using (SQLiteConnection connection = new SQLiteConnection("Data Source=.\\test.db;Version=3;"))
+            using (SQLiteConnection connection = new("Data Source=.\\test.db;Version=3;"))
             {
                 connection.Open();
 
-                using (SQLiteCommand command = new SQLiteCommand("SELECT difficulty FROM saves WHERE name = @name", connection))
+                using (SQLiteCommand command = new("SELECT difficulty FROM saves WHERE name = @name", connection))
                 {
                     command.Parameters.AddWithValue("@name", playerName);
 
@@ -86,11 +81,11 @@ namespace виселица
         {
             string savedWord = string.Empty;
 
-            using (SQLiteConnection connection = new SQLiteConnection("Data Source=.\\test.db;Version=3;"))
+            using (SQLiteConnection connection = new("Data Source=.\\test.db;Version=3;"))
             {
                 connection.Open();
 
-                using (SQLiteCommand command = new SQLiteCommand("SELECT word FROM saves WHERE name = @name", connection))
+                using (SQLiteCommand command = new("SELECT word FROM saves WHERE name = @name", connection))
                 {
                     command.Parameters.AddWithValue("@name", playerName);
 
@@ -111,11 +106,11 @@ namespace виселица
         {
             string savedHiddenWord = string.Empty;
 
-            using (SQLiteConnection connection = new SQLiteConnection("Data Source=.\\test.db;Version=3;"))
+            using (SQLiteConnection connection = new("Data Source=.\\test.db;Version=3;"))
             {
                 connection.Open();
 
-                using (SQLiteCommand command = new SQLiteCommand("SELECT hidden_word FROM saves WHERE name = @name", connection))
+                using (SQLiteCommand command = new("SELECT hidden_word FROM saves WHERE name = @name", connection))
                 {
                     command.Parameters.AddWithValue("@name", playerName);
 
@@ -136,11 +131,11 @@ namespace виселица
         {
             int savedLives = 0;
 
-            using (SQLiteConnection connection = new SQLiteConnection("Data Source=.\\test.db;Version=3;"))
+            using (SQLiteConnection connection = new("Data Source=.\\test.db;Version=3;"))
             {
                 connection.Open();
 
-                using (SQLiteCommand command = new SQLiteCommand("SELECT lives FROM saves WHERE name = @name", connection))
+                using (SQLiteCommand command = new("SELECT lives FROM saves WHERE name = @name", connection))
                 {
                     command.Parameters.AddWithValue("@name", playerName);
 
@@ -162,7 +157,7 @@ namespace виселица
         {
             string connectionString = "Data Source=.\\test.db; Version=3;";
 
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            using (SQLiteConnection connection = new(connectionString))
             {
                 string sql = "";
 
@@ -177,7 +172,7 @@ namespace виселица
                     sql = "SELECT slovo FROM words WHERE uroven = 'легкий'";
                 }
 
-                SQLiteCommand command = new SQLiteCommand(sql, connection);
+                SQLiteCommand command = new(sql, connection);
                 SQLiteDataReader reader = command.ExecuteReader();
                 var words = new List<string>();
                 while (reader.Read())
@@ -187,7 +182,7 @@ namespace виселица
                 }
                 reader.Close();
 
-                Random rnd = new Random();
+                Random rnd = new();
                 int index = rnd.Next(words.Count);
                 return words[index];
             }
@@ -197,19 +192,19 @@ namespace виселица
         {
             string connectionString = "Data Source=test.db; Version=3;";
 
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            using (SQLiteConnection connection = new(connectionString))
             {
                 connection.Open();
 
                 string checkSql = "SELECT COUNT(*) FROM Leaderboard WHERE Name = @name";
-                using (SQLiteCommand checkCommand = new SQLiteCommand(checkSql, connection))
+                using (SQLiteCommand checkCommand = new(checkSql, connection))
                 {
                     checkCommand.Parameters.AddWithValue("@name", playerName);
                     int existingCount = Convert.ToInt32(checkCommand.ExecuteScalar());
 
                     if (existingCount > 0)
                     {
-                        Console.WriteLine("Имя уже существует. Выберите новое имя:");
+                        Console.Write("\n   Имя уже существует. Выберите новое имя:\n\n   > ");
                         playerName = Output.NameException();
 
                         AddPlayerToLeaderboard(playerName, wins);
@@ -218,7 +213,7 @@ namespace виселица
                 }
 
                 string insertSql = "INSERT INTO Leaderboard (Name, Wins) VALUES (@name, @wins)";
-                using (SQLiteCommand insertCommand = new SQLiteCommand(insertSql, connection))
+                using (SQLiteCommand insertCommand = new(insertSql, connection))
                 {
                     insertCommand.Parameters.AddWithValue("@name", playerName);
                     insertCommand.Parameters.AddWithValue("@wins", wins);
@@ -231,11 +226,11 @@ namespace виселица
         {
             string connectionString = "Data Source=.\\test.db; Version=3;";
 
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            using (SQLiteConnection connection = new(connectionString))
             {
                 connection.Open();
                 string sql = "INSERT INTO saves (name, word, hidden_word, lives, difficulty, wins) VALUES (@name, @word, @hiddenWord, @lives, @difficulty, @wins)";
-                using (SQLiteCommand command = new SQLiteCommand(sql, connection))
+                using (SQLiteCommand command = new(sql, connection))
                 {
                     command.Parameters.AddWithValue("@name", playerName);
                     command.Parameters.AddWithValue("@word", word);
@@ -252,11 +247,11 @@ namespace виселица
         {
             string connectionString = "Data Source=.\\test.db; Version=3;";
 
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            using (SQLiteConnection connection = new(connectionString))
             {
                 connection.Open();
                 string sql = "SELECT Name, Wins FROM Leaderboard ORDER BY Wins DESC";
-                SQLiteCommand command = new SQLiteCommand(sql, connection);
+                SQLiteCommand command = new(sql, connection);
                 SQLiteDataReader reader = command.ExecuteReader();
                 Console.WriteLine("\n\tЛИДЕРЫ:\n");
                 while (reader.Read())
@@ -274,11 +269,11 @@ namespace виселица
             Console.Clear();
             string connectionString = "Data Source=.\\test.db; Version=3;";
 
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            using (SQLiteConnection connection = new(connectionString))
             {
                 connection.Open();
                 string sql = "SELECT * FROM saves";
-                SQLiteCommand command = new SQLiteCommand(sql, connection);
+                SQLiteCommand command = new(sql, connection);
                 SQLiteDataReader reader = command.ExecuteReader();
 
                 Console.Write("\n\tСОХРАНЕННЫЕ ИГРЫ:");
@@ -298,7 +293,7 @@ namespace виселица
                 Console.Write("\n   Введите имя игрока, чью игру вы хотите продолжить:\n\n   > ");
                 
 
-                string playerNameInput = Console.ReadLine();
+                string? playerNameInput = Console.ReadLine();
                 if (playerNameInput == "0")
                 {
                     Menu.MainMenu();
@@ -313,8 +308,6 @@ namespace виселица
                     if (reader.Read())
                     {
                         string playerName = reader.GetString(0);
-
-                        //string word = reader.GetString(1);
 
                         string hiddenWord = reader.GetString(2);
                         char[] hiddenWordArray = hiddenWord.ToCharArray();

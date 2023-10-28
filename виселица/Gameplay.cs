@@ -1,19 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Data.SQLite;
-using System.Diagnostics.Metrics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace виселица
+﻿namespace виселица
 {
     internal class Gameplay
     {
         private static void SaveGame(string playerName, string word, char[] hiddenword, int lives, string difficulty, int wins)
         {
-            string hiddenwordString = new string(hiddenword);
+            string hiddenwordString = new(hiddenword);
             DataBase.SaveGame(playerName, word, hiddenwordString, lives, difficulty, wins);
         }
 
@@ -25,7 +16,7 @@ namespace виселица
             int savedLives = DataBase.GetSavedLives(playerName);
             int savedDifficulty = DataBase.GetSavedDifficulty(playerName);
             int savedWins = DataBase.GetSavedWins(playerName);
-            playerName = DataBase.LoadGame();
+            //playerName = DataBase.LoadGame();
 
             Console.Clear();
 
@@ -123,6 +114,14 @@ namespace виселица
                         //Непрерывная игра
                         while (true)
                         {
+                            if (savedDifficulty == 1)
+                            {
+                                lives = 6;
+                            }
+                            else if (savedDifficulty == 2)
+                            {
+                                lives = 10;
+                            }
                             word = DataBase.GetRandomWord(savedDifficulty);
                             hiddenword = new char[word.Length];
 
@@ -312,7 +311,7 @@ namespace виселица
                         if (wins > 0)
                         {
                             Console.Clear();
-                            Console.Write("\n   Введите ваше имя для списка лидеров:\n   > ");
+                            Console.Write("\n   Введите ваше имя для списка лидеров:\n\n   > ");
                             string? playerName = Output.NameException();
                             DataBase.AddPlayerToLeaderboard(playerName, wins);
                         }
@@ -325,7 +324,7 @@ namespace виселица
                         Console.WriteLine("\n   Вы выиграли :)\n");
                         wins++;
                         Console.Write("   Нажмите любую клавишу, чтобы начать новую игру, или введите 'выход', чтобы выйти:\n\n   > ");
-                        string restartChoice = Console.ReadLine();
+                        string? restartChoice = Console.ReadLine();
                         if (restartChoice.ToLower() == "выход")
                         {
                             Console.Clear();

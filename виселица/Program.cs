@@ -1,11 +1,8 @@
-﻿using System.Data.SQLite;
-using System.Diagnostics.Tracing;
-
-namespace виселица
+﻿namespace виселица
 {
     internal class Program
     {
-        private static void Main(string[] args)
+        private static void Main()
         {
             Menu.MainMenu();
         }

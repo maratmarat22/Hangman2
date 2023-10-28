@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace виселица
+﻿namespace виселица
 {
     public class Output
     {
 
-    public static void Response(int lives, char[] hiddenword)
+        public static void Response(int lives, char[] hiddenword)
         {
             Console.Clear();
             Hearts(lives);

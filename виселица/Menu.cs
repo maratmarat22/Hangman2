@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
-
-namespace виселица
+﻿namespace виселица
 {
     internal class Menu
     {
@@ -37,7 +30,7 @@ namespace виселица
                     {
                         Gameplay.ContinueSavedGame(playerNameInput);
                     }
-                    else { goto case "4"; }
+                    else Menu.MainMenu();
 
                     break;
 
