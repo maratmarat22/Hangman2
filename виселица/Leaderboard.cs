@@ -16,7 +16,7 @@
                     validOption = true;
                     Menu.MainMenu();
                 }
-                else Leaderboard.Show();
+                else Show();
             }
         }
     }                       

@@ -1,4 +1,6 @@
-﻿namespace виселица
+﻿using System.Web;
+
+namespace виселица
 {
     internal class Menu
     {
@@ -12,7 +14,7 @@
             switch (menuchoice)
             {
                 case "1":
-                    Gameplay.Level();
+                    SetDifficulty();
                     break;
 
                 case "2":
@@ -28,9 +30,9 @@
                     string playerNameInput = DataBase.LoadGame();
                     if (playerNameInput != "0")
                     {
-                        Gameplay.ContinueSavedGame(playerNameInput);
+                        Gameplay.ContinueLevel(playerNameInput);
                     }
-                    else Menu.MainMenu();
+                    else MainMenu();
 
                     break;
 
@@ -41,17 +43,23 @@
             }
         }
 
-        public static string SetDifficulty()
+        public static void SetDifficulty()
         {
+            Console.Clear();
             Console.Write("\n\tВЫБЕРИТЕ УРОВЕНЬ СЛОЖНОСТИ\n\n   1 - нормальный\n   2 - сложный\n\n   0 - вернуться в главное меню\n\n   > ");
-            string? difficulty = Console.ReadLine();
+                        
+            string? difficultyString = Console.ReadLine();
 
-            switch (difficulty)
+            switch (difficultyString)
             {
                 case "1":
+                    int difficulty = int.Parse(difficultyString);
+                    Gameplay.Level(difficulty);
                     break;
 
                 case "2":
+                    difficulty = int.Parse(difficultyString);
+                    Gameplay.Level(difficulty);
                     break;
 
                 case "0":
@@ -59,11 +67,9 @@
                     break;
 
                 default:
-                    Console.Clear();
-                    return SetDifficulty();
+                    SetDifficulty();
+                    break;
             }
-
-            return difficulty;
         }
     }
 }

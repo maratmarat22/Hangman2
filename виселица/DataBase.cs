@@ -204,7 +204,7 @@ namespace виселица
 
                     if (existingCount > 0)
                     {
-                        Console.Write("\n   Имя уже существует. Выберите новое имя:\n\n   > ");
+                        Console.Write("\n\n   Ваше имя уже существует в списке лидеров. Пожалуйста, выберите другое:\n\n   > ");
                         playerName = Output.NameException();
 
                         AddPlayerToLeaderboard(playerName, wins);
