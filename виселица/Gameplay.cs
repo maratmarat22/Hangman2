@@ -114,7 +114,7 @@ namespace виселица
             Console.Clear();
         }
 
-        public static void Level(int difficulty)
+        public static void FirstLevel(int difficulty)
         {
             while (true)
             {

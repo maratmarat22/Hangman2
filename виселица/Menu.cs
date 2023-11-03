@@ -54,12 +54,12 @@ namespace виселица
             {
                 case "1":
                     int difficulty = int.Parse(difficultyString);
-                    Gameplay.Level(difficulty);
+                    Gameplay.FirstLevel(difficulty);
                     break;
 
                 case "2":
                     difficulty = int.Parse(difficultyString);
-                    Gameplay.Level(difficulty);
+                    Gameplay.FirstLevel(difficulty);
                     break;
 
                 case "0":
